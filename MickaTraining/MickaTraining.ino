@@ -14,7 +14,7 @@
 
 ////////////////////////////////
 // Variables de l ecran LCD 16 colonnes x 2 lignes - debut
-LiquidCrystal_I2C lcd(0x27,16,2);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 // Variables de l ecran LCD 16 colonnes x 2 lignes - fin
 
@@ -43,7 +43,7 @@ int btnAllume;
 // Variable Jeu - fin
 
 ////////////////////////////////
-// 
+//
 int btn1Appuye = 0;
 int btn2Appuye = 0;
 int btnResetAppuye = 0;
@@ -63,7 +63,7 @@ int btn2 = 7; // Bouton de droite
 int btnReset = 9; // Bouton restart
 
 // Définition des entrée/sorties - fin
- 
+
 ////////////////////////////////
 // Init
 void setup()
@@ -78,60 +78,60 @@ void setup()
 
 void loop() {
   // put your main code here, to run repeatedly:
-  // Si le jeu n'est pas encore commencé 
-  if(debutJeu==0){
+  // Si le jeu n'est pas encore commencé
+  if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
     Serial.println("Attente du debut de jeu => appuyez sur start");
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
-  if(debutJeu==1){
+  if (debutJeu == 1) {
     //Si le bouton start est pressé => relance du jeu
     lectureDuBoutonStart(debutJeu);
-    
+
   }
 
 }
 
 /**
   Démarre le jeu.
-  
+
 */
 void demarrerLeJeu() {
-  
+
 }
 
 /**
   Allume les deux voyants.
-  
+
 */
 void allumerLesDeuxVoyants() {
-    allumerLeVoyant("gauche");
-    allumerLeVoyant("droite");
+  allumerLeVoyant("gauche");
+  allumerLeVoyant("droite");
 }
 
 /**
   Eteindre les deux voyants.
-  
+
 */
 void eteindreLesDeuxVoyants() {
-      eteindreLeVoyant("gauche");
-      eteindreLeVoyant("droite");
+  eteindreLeVoyant("gauche");
+  eteindreLeVoyant("droite");
 }
 
 /**
   Allume le voyant à jouer.
 
   @param idVoyant identifiant du voyant à allumer.
-  
+
 */
 void allumerLeVoyant(String idVoyant) {
   eteindreLesDeuxVoyants();
-  if(idVoyant=="gauche"){
-    digitalWrite(voyantGauche,HIGH);
+  if (idVoyant == "gauche") {
+    digitalWrite(voyantGauche, HIGH);
   }
-   if(idVoyant=="droite"){
-    digitalWrite(voyantDroite,HIGH);
+  if (idVoyant == "droite") {
+    digitalWrite(voyantDroite, HIGH);
   }
 }
 
@@ -139,15 +139,15 @@ void allumerLeVoyant(String idVoyant) {
   Eteindre le voyant à jouer
 
   @param idVoyant identifiant du voyant à eteindre.
-  
+
 */
 void eteindreLeVoyant(String idVoyant) {
-  if(idVoyant=="gauche"){
-    digitalWrite(voyantGauche,LOW);
+  if (idVoyant == "gauche") {
+    digitalWrite(voyantGauche, LOW);
   }
-  
-  if(idVoyant=="droite"){
-    digitalWrite(voyantDroite,LOW);
+
+  if (idVoyant == "droite") {
+    digitalWrite(voyantDroite, LOW);
   }
 }
 
@@ -155,15 +155,15 @@ void eteindreLeVoyant(String idVoyant) {
   Allume le bouton lumineux à jouer.
 
   @param idBoutonLumineux identifiant du bouton lumineux à allumer.
-  
+
 */
 void allumerBoutonLumineux(String idBoutonLumineux) {
-  if(idBoutonLumineux=="gauche"){
-    digitalWrite(BoutonLumineuxGauche,HIGH);
+  if (idBoutonLumineux == "gauche") {
+    digitalWrite(BoutonLumineuxGauche, HIGH);
   }
-  
-  if(idBoutonLumineux=="droite"){
-    digitalWrite(BoutonLumineuxDroite,HIGH);
+
+  if (idBoutonLumineux == "droite") {
+    digitalWrite(BoutonLumineuxDroite, HIGH);
   }
 }
 
@@ -171,166 +171,208 @@ void allumerBoutonLumineux(String idBoutonLumineux) {
   Eteindre le bouton lumineux à jouer.
 
   @param idBoutonLumineux identifiant du bouton lumineux à eteindre.
-  
+
 */
 void eteindreBoutonLumineux(String idBoutonLumineux) {
-  if(idBoutonLumineux=="gauche"){
-    digitalWrite(BoutonLumineuxGauche,LOW);
+  if (idBoutonLumineux == "gauche") {
+    digitalWrite(BoutonLumineuxGauche, LOW);
   }
-  
-  if(idBoutonLumineux=="droite"){
-    digitalWrite(BoutonLumineuxDroite,LOW);
+
+  if (idBoutonLumineux == "droite") {
+    digitalWrite(BoutonLumineuxDroite, LOW);
   }
 }
 /**
   Eteindre le bouton lumineux à jouer.
 
   @param idBoutonLumineux identifiant du bouton lumineux à eteindre.
-  
+
 */
 void eteindreLesDeuxBoutonsLumineux() {
-    eteindreBoutonLumineux("gauche");
-    eteindreBoutonLumineux("droite");
+  eteindreBoutonLumineux("gauche");
+  eteindreBoutonLumineux("droite");
 }
 
 /**
   Allume le voyant et le bouton lumineux à jouer.
 
   @param idVoyantEtBoutonLumineux identifiant du voyant et bouton lumineux à allumer.
-  
+
 */
 void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  if(idVoyantEtBoutonLumineux=="gauche"){
+  if (idVoyantEtBoutonLumineux == "gauche") {
     allumerBoutonLumineux("gauche");
     allumerLeVoyant("gauche");
   }
-  if(idVoyantEtBoutonLumineux=="droite"){
+  if (idVoyantEtBoutonLumineux == "droite") {
     allumerBoutonLumineux("droite");
     allumerLeVoyant("droite");
   }
-  
+
 }
 
 /**
   Eteindre le voyant et le bouton lumineux à jouer.
 
   @param idVoyantEtBoutonLumineux identifiant du voyant et bouton lumineux à eteindre.
-  
+
 */
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  if(idVoyantEtBoutonLumineux=="gauche"){
+  if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
     eteindreLeVoyant("gauche");
   }
-  if(idVoyantEtBoutonLumineux=="droite"){
+  if (idVoyantEtBoutonLumineux == "droite") {
     eteindreBoutonLumineux("droite");
     eteindreLeVoyant("droite");
   }
-  
+
 }
 
 /**
   Décrémente de un le nombre de point à jouer.
-  
+
 */
 void decrementerLesAppuisRestants() {
-  
+
 }
 
 /**
   choisi un bouton au hasard.
-  
+
 */
-void choisirBoutonHasard() {
-  
+void choixNouveauBouton(){
+    //Initialisation de random
+    randomSeed(analogRead(0));
+    int btnSuivant = nombreAleatoire();
+    Serial.print("Nouveau nombre aleatoire : ");
+    Serial.println(btnSuivant);
+    //On verifie que le bouton suivant soit différent du précédant
+    btnSuivant = verifierBoutonSuivantDifferentDuBoutonPrecedent(btnSuivant);
+    allumerLed(btnSuivant);
+    btnAllume = btnSuivant;
+    incrementePointsJoues();
+    stockPointsProposes();
 }
 
 /**
   Attend la temporisation si besoin.
-  
+
 */
 void attendreTemporisation() {
-  
+
 }
 
 /**
   Démarre le programme.
-  
+
 */
 void testerNombreAppuiRestant() {
-  
+
 }
 
 /**
   Démarre le temps de jeu.
-  
+
 */
 void demarrerLeTempsDeJeu() {
-  
+
 }
 
 /**
   Pause le temps de jeu.
-  
+
 */
 void pauserLeTempsDeJeu() {
-  
+
 }
 
 /**
   Arrête le temps de jeu.
-  
+
 */
 void arreterLeTempsDeJeu() {
-  
+
 }
 
 /**
   Calculer le temps moyen.
-  
+
 */
 void calculerTempsMoyen() {
-  
+
 }
 
 /**
   Affiche le temps mis.
-  
+
 */
 void afficherLeTemps() {
-  
+
 }
 
 /**
   Remet le jeu à zéro avant redemarrage.
-  
+
 */
 void remettreAZero() {
 
   //Réinitialiser le nombre de point
+  nombreDePointsrestant = nombreDePoints;
 
   //Effacer le temps
 
-  
-  
+
+
 }
 
 /**
-  Lecture du bouton start qui selon l'état du jeu 
+  Lecture du bouton start qui selon l'état du jeu
   - lance le jeu (Start).
   - relance le jeu (Restart).
-  
+
 */
-void lectureDuBoutonStart(int debutJeu) {
-  if(debutJeu==0){
-      debutJeu = 1 ;
-    }
-  else {
+void lectureDuBoutonStart(int etatJeu) {
+
+  //Lecture du bouton RESET 0 = bouton appuyé
+  btnResetAppuye = digitalRead(btnReset);
+  if (btnResetAppuye == 0 && etatJeu == 0)
+  {
+    startPartie();
+  }
+  if (btnResetAppuye == 0 && etatJeu == 1)
+  {
+    reStartPartie();
+  }
+
+}
+
+/**
+  Lance le jeu (Start).
+
+*/
+void startPartie() {
+    // On donne la valeur 1 à l'état du jeu
+    debutJeu = 1 ;
+}
+/**
+  Relance le jeu (Restart).
+
+*/
+void reStartPartie() {
+  if (debutJeu == 1) {
     //Stop le jeu
     debutJeu = 0 ;
     //réinitialise les variables
     remettreAZero();
   }
-  
-}
 
+
+/**
+  Fonction qui retourne nombre aleatoire
+
+*/
+long nombreAleatoire(){
+  nbrAleatoire = random(1, nombreBoutons+1);
+  return nbrAleatoire;
+}
