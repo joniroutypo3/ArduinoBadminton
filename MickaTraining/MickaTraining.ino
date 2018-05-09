@@ -25,6 +25,8 @@ Timer t; // Définition de l'objet timer
 int debutTimer = 0;
 int tempsDeJeu = 10; //temps de jeu en secondes
 int tempsRestant; //temps de jeu restant en secondes
+unsigned int tempoDebutDePartie = 0;
+unsigned int tempoFinDePartie = 0;
 
 // Variables timer - fin
 
