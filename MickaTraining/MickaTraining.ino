@@ -30,20 +30,15 @@ int tempsRestant; //temps de jeu restant en secondes
 
 ////////////////////////////////
 // Variable Jeu - debut
+int attenteDebutJeu = 1;
 int debutJeu = 0;
 int stopJeu = 0;
-long nbrAleatoire;
-int nombreBoutons = 2;
+long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de droite
+int nombreBoutons = 2; // nombre de boutons pour le jeu
+int nombreDePoints = 5;
+int nombreDePointsrestant;
 long btnInitial;
 int btnAllume;
-int nombreDePointsJoues = 0;
-int nombreDePointsGagnes = 0;
-int nombreDePointsPerdus = 0;
-int nombreDePointsTentes = 0;
-int tableauPointProposes[100];
-int tableauPointTentes[100];
-int indexTableauPointProposes;
-int indexTableauPointTentes ;
 
 // Variable Jeu - fin
 
@@ -56,10 +51,10 @@ int btnResetAppuye = 0;
 ////////////////////////////////
 // Définition des entrée/sorties - debut
 // Declaration des bornes de led
-int led1 = 2; // Voyant Gauche
-int led2 = 3; // Voyant Droite
-int led3 = 4; // Bouton lumineux Gauche
-int led4 = 5; // Bouton lumineux Droite
+int voyantGauche = 2; // Voyant Gauche
+int voyantDroite = 3; // Voyant Droite
+int BoutonLumineuxGauche = 4; // Bouton lumineux Gauche
+int BoutonLumineuxDroite = 5; // Bouton lumineux Droite
 int ledTemoinJeu = 8;  // Voyant de jeu en cours
 
 // Declaration des bornes de btn
@@ -75,19 +70,26 @@ void setup()
 {
   Serial.begin(9600);
   t.every(1000, envoiDecompte); // et celle-ci qui appelle la fonction 'envoi' toutes les secondes
-  tempsRestant = tempsDeJeu;
+  nombreDePointsrestant = nombreDePoints;
   lcd.init();
   lcd.backlight();
 }
 
 
-void setup() {
-  // put your setup code here, to run once:
-
-}
-
 void loop() {
   // put your main code here, to run repeatedly:
+  // Si le jeu n'est pas encore commencé 
+  if(debutJeu==0){
+    //Si le bouton start est pressé => le bouton start lance le jeu
+    Serial.println("Attente du debut de jeu => appuyez sur start");
+    lectureDuBoutonStart(debutJeu);
+  }
+  // Si le jeu est en cours
+  if(debutJeu==1){
+    //Si le bouton start est pressé => relance du jeu
+    lectureDuBoutonStart(debutJeu);
+    
+  }
 
 }
 
@@ -104,7 +106,8 @@ void demarrerLeJeu() {
   
 */
 void allumerLesDeuxVoyants() {
-  
+    allumerLeVoyant("gauche");
+    allumerLeVoyant("droite");
 }
 
 /**
@@ -112,7 +115,8 @@ void allumerLesDeuxVoyants() {
   
 */
 void eteindreLesDeuxVoyants() {
-  
+      eteindreLeVoyant("gauche");
+      eteindreLeVoyant("droite");
 }
 
 /**
@@ -121,8 +125,14 @@ void eteindreLesDeuxVoyants() {
   @param idVoyant identifiant du voyant à allumer.
   
 */
-void allumerLeVoyant(int idVoyant) {
-  
+void allumerLeVoyant(String idVoyant) {
+  eteindreLesDeuxVoyants();
+  if(idVoyant=="gauche"){
+    digitalWrite(voyantGauche,HIGH);
+  }
+   if(idVoyant=="droite"){
+    digitalWrite(voyantDroite,HIGH);
+  }
 }
 
 /**
@@ -131,8 +141,14 @@ void allumerLeVoyant(int idVoyant) {
   @param idVoyant identifiant du voyant à eteindre.
   
 */
-void eteindreLeVoyant(int idVoyant) {
+void eteindreLeVoyant(String idVoyant) {
+  if(idVoyant=="gauche"){
+    digitalWrite(voyantGauche,LOW);
+  }
   
+  if(idVoyant=="droite"){
+    digitalWrite(voyantDroite,LOW);
+  }
 }
 
 /**
@@ -141,8 +157,14 @@ void eteindreLeVoyant(int idVoyant) {
   @param idBoutonLumineux identifiant du bouton lumineux à allumer.
   
 */
-void allumerBoutonLumineux(int idBoutonLumineux) {
+void allumerBoutonLumineux(String idBoutonLumineux) {
+  if(idBoutonLumineux=="gauche"){
+    digitalWrite(BoutonLumineuxGauche,HIGH);
+  }
   
+  if(idBoutonLumineux=="droite"){
+    digitalWrite(BoutonLumineuxDroite,HIGH);
+  }
 }
 
 /**
@@ -151,8 +173,24 @@ void allumerBoutonLumineux(int idBoutonLumineux) {
   @param idBoutonLumineux identifiant du bouton lumineux à eteindre.
   
 */
-void eteindreBoutonLumineux(int idBoutonLumineux) {
+void eteindreBoutonLumineux(String idBoutonLumineux) {
+  if(idBoutonLumineux=="gauche"){
+    digitalWrite(BoutonLumineuxGauche,LOW);
+  }
   
+  if(idBoutonLumineux=="droite"){
+    digitalWrite(BoutonLumineuxDroite,LOW);
+  }
+}
+/**
+  Eteindre le bouton lumineux à jouer.
+
+  @param idBoutonLumineux identifiant du bouton lumineux à eteindre.
+  
+*/
+void eteindreLesDeuxBoutonsLumineux() {
+    eteindreBoutonLumineux("gauche");
+    eteindreBoutonLumineux("droite");
 }
 
 /**
@@ -161,7 +199,15 @@ void eteindreBoutonLumineux(int idBoutonLumineux) {
   @param idVoyantEtBoutonLumineux identifiant du voyant et bouton lumineux à allumer.
   
 */
-void allumerLeVoyantEtBouton(int idVoyantEtBoutonLumineux) {
+void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
+  if(idVoyantEtBoutonLumineux=="gauche"){
+    allumerBoutonLumineux("gauche");
+    allumerLeVoyant("gauche");
+  }
+  if(idVoyantEtBoutonLumineux=="droite"){
+    allumerBoutonLumineux("droite");
+    allumerLeVoyant("droite");
+  }
   
 }
 
@@ -171,7 +217,15 @@ void allumerLeVoyantEtBouton(int idVoyantEtBoutonLumineux) {
   @param idVoyantEtBoutonLumineux identifiant du voyant et bouton lumineux à eteindre.
   
 */
-void eteindreLeVoyantEtBouton(int idVoyantEtBoutonLumineux) {
+void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
+  if(idVoyantEtBoutonLumineux=="gauche"){
+    eteindreBoutonLumineux("gauche");
+    eteindreLeVoyant("gauche");
+  }
+  if(idVoyantEtBoutonLumineux=="droite"){
+    eteindreBoutonLumineux("droite");
+    eteindreLeVoyant("droite");
+  }
   
 }
 
@@ -252,5 +306,31 @@ void afficherLeTemps() {
   
 */
 void remettreAZero() {
+
+  //Réinitialiser le nombre de point
+
+  //Effacer le temps
+
+  
   
 }
+
+/**
+  Lecture du bouton start qui selon l'état du jeu 
+  - lance le jeu (Start).
+  - relance le jeu (Restart).
+  
+*/
+void lectureDuBoutonStart(int debutJeu) {
+  if(debutJeu==0){
+      debutJeu = 1 ;
+    }
+  else {
+    //Stop le jeu
+    debutJeu = 0 ;
+    //réinitialise les variables
+    remettreAZero();
+  }
+  
+}
+
