@@ -102,6 +102,8 @@ void loop() {
 
 */
 void allumerLesDeuxVoyants() {
+  debug("Fct allumerLesDeuxVoyants", 1);
+  
   allumerLeVoyant("gauche");
   allumerLeVoyant("droite");
 }
@@ -111,6 +113,8 @@ void allumerLesDeuxVoyants() {
 
 */
 void eteindreLesDeuxVoyants() {
+  debug("Fct eteindreLesDeuxVoyants", 1);
+  
   eteindreLeVoyant("gauche");
   eteindreLeVoyant("droite");
 }
@@ -122,6 +126,9 @@ void eteindreLesDeuxVoyants() {
 
 */
 void allumerLeVoyant(String idVoyant) {
+  debug("Fct allumerLeVoyant : ", 0);
+  debug(idVoyant, 1);
+  
   eteindreLesDeuxVoyants();
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, HIGH);
@@ -138,6 +145,9 @@ void allumerLeVoyant(String idVoyant) {
 
 */
 void eteindreLeVoyant(String idVoyant) {
+  debug("Fct eteindreLeVoyant : ", 0);
+  debug(idVoyant, 1);
+  
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, LOW);
   }
@@ -154,6 +164,9 @@ void eteindreLeVoyant(String idVoyant) {
 
 */
 void allumerBoutonLumineux(String idBoutonLumineux) {
+  debug("Fct allumerBoutonLumineux : ", 0);
+  debug(idBoutonLumineux, 1);
+  
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, HIGH);
   }
@@ -170,6 +183,9 @@ void allumerBoutonLumineux(String idBoutonLumineux) {
 
 */
 void eteindreBoutonLumineux(String idBoutonLumineux) {
+  debug("Fct eteindreBoutonLumineux : ", 0);
+  debug(idBoutonLumineux, 1);
+  
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, LOW);
   }
@@ -185,6 +201,8 @@ void eteindreBoutonLumineux(String idBoutonLumineux) {
 
 */
 void eteindreLesDeuxBoutonsLumineux() {
+  debug("Fct eteindreLesDeuxBoutonsLumineux", 1);
+  
   eteindreBoutonLumineux("gauche");
   eteindreBoutonLumineux("droite");
 }
@@ -196,6 +214,9 @@ void eteindreLesDeuxBoutonsLumineux() {
 
 */
 void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
+  debug("Fct allumerLeVoyantEtBouton : ", 0);
+  debug(idVoyantEtBoutonLumineux, 1);
+  
   if (idVoyantEtBoutonLumineux == "gauche") {
     allumerBoutonLumineux("gauche");
     allumerLeVoyant("gauche");
@@ -214,6 +235,9 @@ void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
+  debug("Fct eteindreLeVoyantEtBouton : ", 0);
+  debug(idVoyantEtBoutonLumineux, 1);
+  
   if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
     eteindreLeVoyant("gauche");
@@ -230,6 +254,7 @@ void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void decrementerLesAppuisRestants() {
+  debug("Fct decrementerLesAppuisRestants", 1);
 
 }
 
@@ -238,6 +263,8 @@ void decrementerLesAppuisRestants() {
 
 */
 void choixNouveauBouton() {
+  debug("Fct choixNouveauBouton", 1);
+  
   //Initialisation de random
   randomSeed(analogRead(0));
   int btnSuivant = nombreAleatoire();
@@ -256,6 +283,7 @@ void choixNouveauBouton() {
 
 */
 void attendreTemporisation() {
+  debug("Fct attendreTemporisation", 1);
 
 }
 
@@ -264,6 +292,7 @@ void attendreTemporisation() {
 
 */
 void testerNombreAppuiRestant() {
+  debug("Fct testerNombreAppuiRestant", 1);
 
 }
 
@@ -272,6 +301,7 @@ void testerNombreAppuiRestant() {
 
 */
 void demarrerLeTempsDeJeu() {
+  debug("Fct demarrerLeTempsDeJeu", 1);
 
 }
 
@@ -280,6 +310,7 @@ void demarrerLeTempsDeJeu() {
 
 */
 void pauserLeTempsDeJeu() {
+  debug("Fct pauserLeTempsDeJeu", 1);
 
 }
 
@@ -288,6 +319,7 @@ void pauserLeTempsDeJeu() {
 
 */
 void arreterLeTempsDeJeu() {
+  debug("Fct arreterLeTempsDeJeu", 1);
 
 }
 
@@ -296,6 +328,7 @@ void arreterLeTempsDeJeu() {
 
 */
 void calculerTempsMoyen() {
+  debug("Fct calculerTempsMoyen", 1);
 
 }
 
@@ -304,6 +337,7 @@ void calculerTempsMoyen() {
 
 */
 void afficherLeTemps() {
+  debug("Fct afficherLeTemps", 1);
 
 }
 
@@ -312,6 +346,7 @@ void afficherLeTemps() {
 
 */
 void remettreAZero() {
+  debug("Fct remettreAZero", 1);
 
   //Réinitialiser le nombre de point
   nombreDePointsRestant = nombreDePointsAJouer;
@@ -329,6 +364,7 @@ void remettreAZero() {
 
 */
 void lectureDuBoutonStart(int etatJeu) {
+  debug("Fct lectureDuBoutonStart", 1);
 
   //Lecture du bouton RESET. La valeur 0 = bouton appuyé
   btnResetAppuye = digitalRead(btnReset);
@@ -348,6 +384,8 @@ void lectureDuBoutonStart(int etatJeu) {
 
 */
 void demarrerPartie() {
+  debug("Fct demarrerPartie", 1);
+  
   // On donne la valeur 1 à l'état du jeu
   debutJeu = 1 ;
   // On récupère le temps du début du jeu
@@ -360,6 +398,8 @@ void demarrerPartie() {
 
 */
 void stoperPartie() {
+  debug("Fct stoperPartie", 1);
+  
   if (debutJeu == 1) {
     //Stop le jeu
     debutJeu = 0 ;
@@ -374,6 +414,8 @@ void stoperPartie() {
 
   */
   long nombreAleatoire() {
+    debug("Fct nombreAleatoire", 1);
+    
     nbrAleatoire = random(1, nombreBoutons + 1);
     return nbrAleatoire;
   }
@@ -384,9 +426,15 @@ void stoperPartie() {
 
   */
 
-  void debug(String messageDebug) {
+  void debug(String messageDebug, int retourLigne) {
     if (1 == debugMoniteurSerie) {
-      Serial.println(messageDebug);
+      if (1 == retourLigne) {
+        Serial.print(messageDebug);
+      }
+      else
+      {
+        Serial.println(messageDebug);
+      }
     }
   }
 
