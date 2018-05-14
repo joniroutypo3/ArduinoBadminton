@@ -269,10 +269,18 @@ void choixNouveauBouton() {
   //Initialisation de random
   randomSeed(analogRead(0));
   int btnSuivant = nombreAleatoire();
-  Serial.print("Nouveau nombre aleatoire : ");
-  Serial.println(btnSuivant);
-  //On verifie que le bouton suivant soit différent du précédant
-  btnSuivant = verifierBoutonSuivantDifferentDuBoutonPrecedent(btnSuivant);
+  debug("Nouveau nombre aleatoire : ", 0);
+  debug(btnSuivant, 1);
+
+  //Si le chiffre  est 1 => gauche 
+  if(1 == btnSuivant){
+      allumerLeVoyantEtBouton("gauche")
+  }
+  //Si le chiffre  est 2 => droite
+  else if (2 == btnSuivant){
+      allumerLeVoyantEtBouton("droite")
+  }
+ 
   allumerLed(btnSuivant);
   btnAllume = btnSuivant;
   incrementePointsJoues();
@@ -382,13 +390,16 @@ void lectureDuBoutonStart(int etatJeu) {
 
 }
 
+
 /**
   Démarre le jeu.
 
 */
 void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
-  
+
+  //
+  choixNouveauBouton();
   // On donne la valeur 1 à l'état du jeu
   debutJeu = 1 ;
   // On récupère le temps du début du jeu
