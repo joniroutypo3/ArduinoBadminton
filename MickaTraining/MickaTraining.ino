@@ -84,11 +84,12 @@ void loop() {
   // Si le jeu n'est pas encore commencé
   if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
-    Serial.println("Attente du debut de jeu => appuyez sur start");
+    debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
   if (debutJeu == 1) {
+    debug("debutJeu = 1 => On lance le jeu ", 1);
     //Si le bouton start est pressé => relance du jeu
     lectureDuBoutonStart(debutJeu);
   }
@@ -370,10 +371,12 @@ void lectureDuBoutonStart(int etatJeu) {
   btnResetAppuye = digitalRead(btnReset);
   if (btnResetAppuye == 0 && etatJeu == 0)
   {
+    debug("Demmarage de partie dans Fct lectureDuBoutonStart", 1);
     demarrerPartie();
   }
   if (btnResetAppuye == 0 && etatJeu == 1)
   {
+    debug("Stop de partie dans Fct lectureDuBoutonStart", 1);
     stoperPartie();
   }
 
