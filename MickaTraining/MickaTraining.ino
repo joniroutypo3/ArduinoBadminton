@@ -350,7 +350,7 @@ void demarrerPartie() {
   // On donne la valeur 1 à l'état du jeu
   debutJeu = 1 ;
   // On récupère le temps du début du jeu
-  DebutPartie = millis();
+  tempoDebutDePartie = millis();
 }
 
 
@@ -363,7 +363,7 @@ void stoperPartie() {
     //Stop le jeu
     debutJeu = 0 ;
     //réinitialise les variables
-    FinPartie = millis();
+    tempoFinDePartie = millis();
     remettreAZero();
   }
 
