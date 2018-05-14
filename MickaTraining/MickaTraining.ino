@@ -95,12 +95,6 @@ void loop() {
 
 }
 
-/**
-  Démarre le jeu.
-
-*/
-void demarrerLeJeu() {
-
 }
 
 /**
@@ -331,7 +325,7 @@ void remettreAZero() {
 /**
   Lecture du bouton start qui selon l'état du jeu
   - lance le jeu (Start).
-  - relance le jeu (Restart).
+  - stop le jeu (Restart).
 
 */
 void lectureDuBoutonStart(int etatJeu) {
@@ -340,32 +334,37 @@ void lectureDuBoutonStart(int etatJeu) {
   btnResetAppuye = digitalRead(btnReset);
   if (btnResetAppuye == 0 && etatJeu == 0)
   {
-    startPartie();
+    demarrerPartie();
   }
   if (btnResetAppuye == 0 && etatJeu == 1)
   {
-    reStartPartie();
+    stoperPartie);
   }
 
 }
 
 /**
-  Lance le jeu (Start).
+  Démarre le jeu.
 
 */
-void startPartie() {
-    // On donne la valeur 1 à l'état du jeu
-    debutJeu = 1 ;
+void demarrerPartie() {
+  // On donne la valeur 1 à l'état du jeu
+  debutJeu = 1 ;
+  // On récupère le temps du début du jeu
+  DebutPartie = millis();
 }
+
+
 /**
-  Relance le jeu (Restart).
+  Stop le jeu (Restart).
 
 */
-void reStartPartie() {
+void stoperPartie) {
   if (debutJeu == 1) {
     //Stop le jeu
     debutJeu = 0 ;
     //réinitialise les variables
+    FinPartie = millis();
     remettreAZero();
   }
 
