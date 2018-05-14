@@ -337,7 +337,7 @@ void lectureDuBoutonStart(int etatJeu) {
   }
   if (btnResetAppuye == 0 && etatJeu == 1)
   {
-    stoperPartie);
+    stoperPartie();
   }
 
 }
@@ -358,7 +358,7 @@ void demarrerPartie() {
   Stop le jeu (Restart).
 
 */
-void stoperPartie) {
+void stoperPartie() {
   if (debutJeu == 1) {
     //Stop le jeu
     debutJeu = 0 ;
