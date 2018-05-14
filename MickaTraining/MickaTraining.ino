@@ -41,6 +41,8 @@ int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
 long btnInitial;
 int btnAllume;
+int debugMoniteurSerie = 1;
+String messageDebug; // variable de message qui sert pour le debug sur le moniteur série
 
 // Variable Jeu - fin
 
@@ -89,7 +91,6 @@ void loop() {
   if (debutJeu == 1) {
     //Si le bouton start est pressé => relance du jeu
     lectureDuBoutonStart(debutJeu);
-
   }
 
 }
@@ -376,3 +377,16 @@ long nombreAleatoire(){
   nbrAleatoire = random(1, nombreBoutons+1);
   return nbrAleatoire;
 }
+
+
+/**
+  Fonction qui retourne le message transmis sur le moniteur serie
+
+*/
+
+void debug(String messageDebug){
+  if(1 == debugMoniteurSerie){
+    Serial.println(messageDebug);
+  }
+}
+
