@@ -237,18 +237,18 @@ void decrementerLesAppuisRestants() {
   choisi un bouton au hasard.
 
 */
-void choixNouveauBouton(){
-    //Initialisation de random
-    randomSeed(analogRead(0));
-    int btnSuivant = nombreAleatoire();
-    Serial.print("Nouveau nombre aleatoire : ");
-    Serial.println(btnSuivant);
-    //On verifie que le bouton suivant soit différent du précédant
-    btnSuivant = verifierBoutonSuivantDifferentDuBoutonPrecedent(btnSuivant);
-    allumerLed(btnSuivant);
-    btnAllume = btnSuivant;
-    incrementePointsJoues();
-    stockPointsProposes();
+void choixNouveauBouton() {
+  //Initialisation de random
+  randomSeed(analogRead(0));
+  int btnSuivant = nombreAleatoire();
+  Serial.print("Nouveau nombre aleatoire : ");
+  Serial.println(btnSuivant);
+  //On verifie que le bouton suivant soit différent du précédant
+  btnSuivant = verifierBoutonSuivantDifferentDuBoutonPrecedent(btnSuivant);
+  allumerLed(btnSuivant);
+  btnAllume = btnSuivant;
+  incrementePointsJoues();
+  stockPointsProposes();
 }
 
 /**
@@ -369,24 +369,24 @@ void stoperPartie() {
   }
 
 
-/**
-  Fonction qui retourne nombre aleatoire
+  /**
+    Fonction qui retourne nombre aleatoire
 
-*/
-long nombreAleatoire(){
-  nbrAleatoire = random(1, nombreBoutons+1);
-  return nbrAleatoire;
-}
-
-
-/**
-  Fonction qui retourne le message transmis sur le moniteur serie
-
-*/
-
-void debug(String messageDebug){
-  if(1 == debugMoniteurSerie){
-    Serial.println(messageDebug);
+  */
+  long nombreAleatoire() {
+    nbrAleatoire = random(1, nombreBoutons + 1);
+    return nbrAleatoire;
   }
-}
+
+
+  /**
+    Fonction qui retourne le message transmis sur le moniteur serie
+
+  */
+
+  void debug(String messageDebug) {
+    if (1 == debugMoniteurSerie) {
+      Serial.println(messageDebug);
+    }
+  }
 
