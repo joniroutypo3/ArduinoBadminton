@@ -390,6 +390,32 @@ void lectureDuBoutonStart(int etatJeu) {
 
 }
 
+/**
+  Lecture des bouton gauche et droite
+
+*/
+void lectureDesBoutons(){
+  debug("Fct lectureDesBoutons", 1);
+  
+    //Lecture du bouton 1
+    btn1Appuye=digitalRead(btn1);
+    //Serial.print("valeur du bouton 1: ");
+    //Serial.println(btn1Appuye);
+    if(btn1Appuye==0)
+    {
+      verifierBouton(1);
+    }
+    
+    //Lecture du bouton 2
+    btn2Appuye=digitalRead(btn2);
+    //Serial.print("valeur du bouton 2: ");
+    //Serial.println(btn1Appuye);
+ 
+    if(btn2Appuye==0)
+    {
+      verifierBouton(2);
+    }
+}
 
 /**
   Démarre le jeu.
