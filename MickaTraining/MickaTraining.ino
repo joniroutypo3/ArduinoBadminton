@@ -90,10 +90,10 @@ void loop() {
   // Si le jeu est en cours
   if (debutJeu == 1) {
     debug("debutJeu = 1 => On lance le jeu ", 1);
-    //Si le bouton start est pressé => relance du jeu
-    lectureDuBoutonStart(debutJeu);
+    // Lecture des differents boutons
+    // Si le bouton start est pressé => relance du jeu
+    lectureDesBoutons();
   }
-
 }
 
 }
@@ -415,6 +415,9 @@ void lectureDesBoutons(){
     {
       verifierBouton(2);
     }
+
+    //Lecture du bouton start
+    lectureDuBoutonStart(debutJeu);
 }
 
 /**
