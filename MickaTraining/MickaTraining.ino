@@ -37,8 +37,8 @@ int debutJeu = 0;
 int stopJeu = 0;
 long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de droite
 int nombreBoutons = 2; // nombre de boutons pour le jeu
-int nombreDePoints = 5;
-int nombreDePointsrestant;
+int nombreDePoints = 5; // nombre de points à jouer dans une partie
+int nombreDePointsrestant; // nombre de points à jouer avant fin de partie
 long btnInitial;
 int btnAllume;
 
