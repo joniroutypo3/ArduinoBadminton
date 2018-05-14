@@ -418,6 +418,23 @@ void lectureDesBoutons(){
 }
 
 /**
+  Fonction qui verifie si le bouton appuyé est le bon
+
+*/
+void verifierBouton(int btnAVerifier){
+
+  debug("Fct lectureDesBoutons", 1);
+  
+  debug("Bouton appuyé = n°", 0);
+  debug(btnAVerifier, 1);
+
+  if(btnAVerifier == btnAllume){ 
+    debug("Bouton appuyé = OK", 1);
+    choixNouveauBouton();
+  }
+}
+
+/**
   Démarre le jeu.
 
 */
