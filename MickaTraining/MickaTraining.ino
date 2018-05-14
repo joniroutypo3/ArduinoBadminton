@@ -37,8 +37,8 @@ int debutJeu = 0;
 int stopJeu = 0;
 long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de droite
 int nombreBoutons = 2; // nombre de boutons pour le jeu
-int nombreDePoints = 5; // nombre de points à jouer dans une partie
-int nombreDePointsrestant; // nombre de points à jouer avant fin de partie
+int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
+int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
 long btnInitial;
 int btnAllume;
 
@@ -72,7 +72,6 @@ void setup()
 {
   Serial.begin(9600);
   t.every(1000, envoiDecompte); // et celle-ci qui appelle la fonction 'envoi' toutes les secondes
-  nombreDePointsrestant = nombreDePoints;
   lcd.init();
   lcd.backlight();
 }
@@ -314,7 +313,7 @@ void afficherLeTemps() {
 void remettreAZero() {
 
   //Réinitialiser le nombre de point
-  nombreDePointsrestant = nombreDePoints;
+  nombreDePointsRestant = nombreDePointsAJouer;
 
   //Effacer le temps
 
@@ -330,7 +329,7 @@ void remettreAZero() {
 */
 void lectureDuBoutonStart(int etatJeu) {
 
-  //Lecture du bouton RESET 0 = bouton appuyé
+  //Lecture du bouton RESET. La valeur 0 = bouton appuyé
   btnResetAppuye = digitalRead(btnReset);
   if (btnResetAppuye == 0 && etatJeu == 0)
   {
