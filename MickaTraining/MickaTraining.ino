@@ -84,12 +84,12 @@ void loop() {
   // Si le jeu n'est pas encore commencé
   if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
-    debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
+    //debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
   if (debutJeu == 1) {
-    debug("debutJeu = 1 => On lance le jeu ", 1);
+    //debug("debutJeu = 1 => On lance le jeu ", 1);
     // Lecture des differents boutons
     // Si le bouton start est pressé => relance du jeu
     lectureDesBoutons();
@@ -101,7 +101,7 @@ void loop() {
 
 */
 void allumerLesDeuxVoyants() {
-  debug("Fct allumerLesDeuxVoyants", 1);
+  //debug("Fct allumerLesDeuxVoyants", 1);
   
   allumerLeVoyant("gauche");
   allumerLeVoyant("droite");
@@ -112,7 +112,7 @@ void allumerLesDeuxVoyants() {
 
 */
 void eteindreLesDeuxVoyants() {
-  debug("Fct eteindreLesDeuxVoyants", 1);
+  //debug("Fct eteindreLesDeuxVoyants", 1);
   
   eteindreLeVoyant("gauche");
   eteindreLeVoyant("droite");
@@ -144,8 +144,8 @@ void allumerLeVoyant(String idVoyant) {
 
 */
 void eteindreLeVoyant(String idVoyant) {
-  debug("Fct eteindreLeVoyant : ", 0);
-  debug(idVoyant, 1);
+  //debug("Fct eteindreLeVoyant : ", 0);
+  //debug(idVoyant, 1);
   
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, LOW);
@@ -182,8 +182,8 @@ void allumerBoutonLumineux(String idBoutonLumineux) {
 
 */
 void eteindreBoutonLumineux(String idBoutonLumineux) {
-  debug("Fct eteindreBoutonLumineux : ", 0);
-  debug(idBoutonLumineux, 1);
+  //debug("Fct eteindreBoutonLumineux : ", 0);
+  //debug(idBoutonLumineux, 1);
   
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, LOW);
@@ -200,7 +200,7 @@ void eteindreBoutonLumineux(String idBoutonLumineux) {
 
 */
 void eteindreLesDeuxBoutonsLumineux() {
-  debug("Fct eteindreLesDeuxBoutonsLumineux", 1);
+  //debug("Fct eteindreLesDeuxBoutonsLumineux", 1);
   
   eteindreBoutonLumineux("gauche");
   eteindreBoutonLumineux("droite");
@@ -213,8 +213,8 @@ void eteindreLesDeuxBoutonsLumineux() {
 
 */
 void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  debug("Fct allumerLeVoyantEtBouton : ", 0);
-  debug(idVoyantEtBoutonLumineux, 1);
+  //debug("Fct allumerLeVoyantEtBouton : ", 0);
+  //debug(idVoyantEtBoutonLumineux, 1);
   
   if (idVoyantEtBoutonLumineux == "gauche") {
     allumerBoutonLumineux("gauche");
@@ -377,7 +377,7 @@ void remettreAZero() {
 
 */
 void lectureDuBoutonStart(int etatJeu) {
-  debug("Fct lectureDuBoutonStart", 1);
+  //debug("Fct lectureDuBoutonStart", 1);
 
   //Lecture du bouton RESET. La valeur 0 = bouton appuyé
   btnResetAppuye = digitalRead(btnReset);
@@ -399,11 +399,11 @@ void lectureDuBoutonStart(int etatJeu) {
 
 */
 void lectureDesBoutons(){
-  debug("Fct lectureDesBoutons", 1);
+  //debug("Fct lectureDesBoutons", 1);
   
     //Lecture du bouton 1
     btn1Appuye=digitalRead(btn1);
-    Serial.print("valeur du bouton 1: ");
+    //Serial.print("valeur du bouton 1: ");
     //Serial.println(btn1Appuye);
     if(btn1Appuye==1)
     {
@@ -412,7 +412,7 @@ void lectureDesBoutons(){
     
     //Lecture du bouton 2
     btn2Appuye=digitalRead(btn2);
-    Serial.print("valeur du bouton 2: ");
+    //Serial.print("valeur du bouton 2: ");
     //Serial.println(btn1Appuye);
  
     if(btn2Appuye==1)
@@ -482,7 +482,20 @@ void stoperPartie() {
   long nombreAleatoire() {
     debug("Fct nombreAleatoire", 1);
     
-    nbrAleatoire = random(1, nombreBoutons + 1);
+    //nbrAleatoire = random(1, nombreBoutons + 1);
+    nbrAleatoire = random(1, 1000);
+    debug("Nombre nombreAleatoire = ", 0);
+    debug(String(nbrAleatoire), 1);
+
+    // test pour avoir une meilleur répartition avec nombres pairs et impairs
+    // Si le nombre aléatoire est pair
+    if ( (nbrAleatoire % 2) == 0) {
+      nbrAleatoire = 2 ; 
+      }
+      // Sinon le nombre aléatoire est impair
+    else{
+      nbrAleatoire = 1 ;
+    }
     return nbrAleatoire;
   }
 
