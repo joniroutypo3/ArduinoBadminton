@@ -73,7 +73,7 @@ int btnReset = 9; // Bouton restart
 void setup()
 {
   Serial.begin(9600);
-  t.every(1000, envoiDecompte); // et celle-ci qui appelle la fonction 'envoi' toutes les secondes
+  //t.every(1000, envoiDecompte); // et celle-ci qui appelle la fonction 'envoi' toutes les secondes
   lcd.init();
   lcd.backlight();
 }
@@ -94,8 +94,6 @@ void loop() {
     // Si le bouton start est pressé => relance du jeu
     lectureDesBoutons();
   }
-}
-
 }
 
 /**
@@ -265,26 +263,32 @@ void decrementerLesAppuisRestants() {
 */
 void choixNouveauBouton() {
   debug("Fct choixNouveauBouton", 1);
+
+  // On eteind tous les voyants et boutons
+  //@Todo
+
+  // On decremente de 1 le nombre de points à jouer
+  //@Todo
+
+  // Si le nombre de points à jouer est supérieur à 0 on continue à choisir un autre bouton.
+  //@Todo
+
   
   //Initialisation de random
   randomSeed(analogRead(0));
   int btnSuivant = nombreAleatoire();
+  btnAllume = btnSuivant ;
   debug("Nouveau nombre aleatoire : ", 0);
-  debug(btnSuivant, 1);
+  debug(String(btnSuivant), 1);
 
   //Si le chiffre  est 1 => gauche 
   if(1 == btnSuivant){
-      allumerLeVoyantEtBouton("gauche")
+      allumerLeVoyantEtBouton("gauche");
   }
   //Si le chiffre  est 2 => droite
   else if (2 == btnSuivant){
-      allumerLeVoyantEtBouton("droite")
+      allumerLeVoyantEtBouton("droite");
   }
- 
-  allumerLed(btnSuivant);
-  btnAllume = btnSuivant;
-  incrementePointsJoues();
-  stockPointsProposes();
 }
 
 /**
@@ -377,12 +381,12 @@ void lectureDuBoutonStart(int etatJeu) {
 
   //Lecture du bouton RESET. La valeur 0 = bouton appuyé
   btnResetAppuye = digitalRead(btnReset);
-  if (btnResetAppuye == 0 && etatJeu == 0)
+  if (btnResetAppuye == 1 && etatJeu == 0)
   {
     debug("Demmarage de partie dans Fct lectureDuBoutonStart", 1);
     demarrerPartie();
   }
-  if (btnResetAppuye == 0 && etatJeu == 1)
+  if (btnResetAppuye == 1 && etatJeu == 1)
   {
     debug("Stop de partie dans Fct lectureDuBoutonStart", 1);
     stoperPartie();
@@ -399,19 +403,19 @@ void lectureDesBoutons(){
   
     //Lecture du bouton 1
     btn1Appuye=digitalRead(btn1);
-    //Serial.print("valeur du bouton 1: ");
+    Serial.print("valeur du bouton 1: ");
     //Serial.println(btn1Appuye);
-    if(btn1Appuye==0)
+    if(btn1Appuye==1)
     {
       verifierBouton(1);
     }
     
     //Lecture du bouton 2
     btn2Appuye=digitalRead(btn2);
-    //Serial.print("valeur du bouton 2: ");
+    Serial.print("valeur du bouton 2: ");
     //Serial.println(btn1Appuye);
  
-    if(btn2Appuye==0)
+    if(btn2Appuye==1)
     {
       verifierBouton(2);
     }
@@ -429,7 +433,9 @@ void verifierBouton(int btnAVerifier){
   debug("Fct lectureDesBoutons", 1);
   
   debug("Bouton appuyé = n°", 0);
-  debug(btnAVerifier, 1);
+  debug(String(btnAVerifier), 1);
+  debug("Bouton allumé = ", 0);
+  debug(String(btnAllume), 1);
 
   if(btnAVerifier == btnAllume){ 
     debug("Bouton appuyé = OK", 1);
@@ -468,7 +474,7 @@ void stoperPartie() {
     remettreAZero();
   }
 
-
+}
   /**
     Fonction qui retourne nombre aleatoire
 
@@ -489,11 +495,11 @@ void stoperPartie() {
   void debug(String messageDebug, int retourLigne) {
     if (1 == debugMoniteurSerie) {
       if (1 == retourLigne) {
-        Serial.print(messageDebug);
+        Serial.println(messageDebug);
       }
       else
       {
-        Serial.println(messageDebug);
+        Serial.print(messageDebug);
       }
     }
   }
