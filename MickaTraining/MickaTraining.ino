@@ -481,11 +481,15 @@ void stoperPartie() {
   */
   long nombreAleatoire() {
     debug("Fct nombreAleatoire", 1);
-    
+    randomSeed(analogRead(0));
     //nbrAleatoire = random(1, nombreBoutons + 1);
     nbrAleatoire = random(1, 1000);
-    debug("Nombre nombreAleatoire = ", 0);
+    debug("Nombre aleatoire = ", 0);
     debug(String(nbrAleatoire), 1);
+
+    int aR = analogRead(A0) % 2;
+    debug("Analog Read = ", 0);
+    debug(String(aR), 1);
 
     // test pour avoir une meilleur répartition avec nombres pairs et impairs
     // Si le nombre aléatoire est pair
