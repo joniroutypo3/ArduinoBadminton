@@ -39,8 +39,6 @@ long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de dr
 int minAleatoire = 0; // nombre qui servira à definir le minimum aléatoire
 int maxAleatoire = 1 ; // nombre qui servira à definir le maximum aléatoire
 int nombreBoutons = 2; // nombre de boutons pour le jeu
-int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
-int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
 long btnInitial;
 int btnAllume;
 int debugMoniteurSerie = 1;
@@ -73,6 +71,9 @@ int btnReset = 9; // Bouton restart
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons - debut
 const int nombreDeSequence = 5; //nombre de séquence de jeu pré-définies.
 const int nombreDePointsParSequence = 20; //nombre de point par sequence
+int nombreDePointsAJouer = nombreDePointsParSequence; // nombre de points à jouer dans une partie
+int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
+
 int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
 int sequenceEnCours [20]; // initialisation du tableau pour sequence en cours.
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons  fin
@@ -263,6 +264,10 @@ void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 */
 void decrementerLesAppuisRestants() {
   debug("Fct decrementerLesAppuisRestants", 1);
+
+  nombreDePointsRestant = nombreDePointsRestant - 1 ;
+  debug("Nombre d'AppuisRestants = ", 0);
+  debug(String(nombreDePointsRestant), 1);
 
 }
 
@@ -489,7 +494,7 @@ void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
   choixNouvelleSequence();
   //
-  choixNouveauBouton();
+  //choixNouveauBouton();
   // On donne la valeur 1 à l'état du jeu
   debutJeu = 1 ;
   // On récupère le temps du début du jeu
