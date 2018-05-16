@@ -28,9 +28,16 @@ int tempsRestant; //temps de jeu restant en secondes
 int temporisationEntreLesPoints = 2000;
 unsigned int tempoDebutDePartie = 0;
 unsigned int tempoFinDePartie = 0;
-unsigned int dureePartie = 0;
-unsigned int dureePartieEnSecondes = 0;
-unsigned int dureePartieEnMiliSecondes = 0;
+unsigned int dureeTotalePartie = 0;
+unsigned int dureeTotalePartieEnSecondes = 0;
+unsigned int dureeTotalePartieEnMiliSecondes = 0;
+unsigned int dureeTotaleDeplacementPartie = 0;
+unsigned int dureeTotaleDeplacementPartieEnSecondes = 0;
+unsigned int dureeTotaleDeplacementPartieEnMiliSecondes = 0;
+unsigned int dureeMoyenneDeplacementPartie = 0;
+unsigned int dureeMoyenneDeplacementPartieEnSecondes = 0;
+unsigned int dureeMoyenneDeplacementPartieEnMiliSecondes = 0;
+
 
 // Variables timer - fin
 
@@ -397,33 +404,77 @@ void arreterLeTempsDeJeu() {
 }
 
 /**
-  Calculer le temps moyen.
+  Calculer le temps total de la partie.
+    Temps de réaction
+  + Temps de déplacement vers le bouton
+  + Temp de pause retour à la base
 
 */
-void calculerTempsMoyen() {
-  debug("Fct calculerTempsMoyen", 1);
+void calculerTempsTotalPartie() {
+
+  dureeTotalePartie = tempoFinDePartie - tempoDebutDePartie ;
+  dureeTotalePartieEnSecondes = dureeTotalePartie / 1000 ;
+  dureeTotalePartieEnMiliSecondes = dureeTotalePartie % 1000;
+
+}
+
+/**
+  Calculer le temps total de déplacement vers le bouton
+  On enleve le temps de temporisation entre chaque point
+
+*/
+void calculerTempsTotalDeplacement() {
+  calculerTempsTotalPartie();
+
+  dureeTotaleDeplacementPartie = dureeTotalePartie - ( nombreDePointsParSequence * temporisationEntreLesPoints);
+  dureeTotaleDeplacementPartieEnSecondes = dureeTotaleDeplacementPartie / 1000 ;
+  dureeTotaleDeplacementPartieEnMiliSecondes = dureeTotaleDeplacementPartie % 1000;
+
+
+}
+
+
+/**
+  Calculer le temps moyen d'un déplacement vers le bouton
+  On divise le temps de déplacement par le nombre de points
+
+*/
+void calculerTempsMoyenDeplacement() {
+  calculerTempsTotalDeplacement();
+
+  dureeMoyenneDeplacementPartie = dureeTotaleDeplacementPartie / nombreDePointsParSequence;
+  dureeMoyenneDeplacementPartieEnSecondes = dureeMoyenneDeplacementPartie / 1000 ;
+  dureeMoyenneDeplacementPartieEnMiliSecondes = dureeMoyenneDeplacementPartie % 1000;
+
+
+}
+
+
+/**
+  Affiche le temps mis.
+
+*/
+void afficherLesTemps() {
+  debug("Fct afficherLesTemps", 1);
+
+  calculerTempsMoyenDeplacement();
 
   debug("Début de Sequence à : ", 0);
   debug(String(tempoDebutDePartie), 1);
   debug("Fin de Sequence à : ", 0);
   debug(String(tempoFinDePartie), 1);
 
-  dureePartieEnSecondes = (tempoFinDePartie - tempoDebutDePartie) / 1000 ;
-  dureePartieEnMiliSecondes = (tempoFinDePartie - tempoDebutDePartie) % 1000;
-
-  debug("Durée de la sequence à : ", 0);
-  debug(String(dureePartieEnSecondes), 0);
+  debug("temps de déplacement total : ", 0);
+  debug(String(dureeTotaleDeplacementPartieEnSecondes), 0);
   debug(",", 0);
-  debug(String(dureePartieEnMiliSecondes), 1);
+  debug(String(dureeTotaleDeplacementPartieEnMiliSecondes), 1);
 
-}
+  debug("temps de déplacement moyen : ", 0);
+  debug(String(dureeMoyenneDeplacementPartieEnSecondes), 0);
+  debug(",", 0);
+  debug(String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
 
-/**
-  Affiche le temps mis.
 
-*/
-void afficherLeTemps() {
-  debug("Fct afficherLeTemps", 1);
 
 }
 
@@ -554,7 +605,9 @@ void stoperPartie() {
     tempoFinDePartie = millis();
 
     //Calcul du temps moyen
-    calculerTempsMoyen();
+    //calculerTempsMoyenDeplacement();
+    //Afficher les temps (total de déplacement et temps moyen de déplacement)
+    afficherLesTemps();
 
     remettreAZero();
   }
