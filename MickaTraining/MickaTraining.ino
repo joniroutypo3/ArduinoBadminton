@@ -36,6 +36,8 @@ int attenteDebutJeu = 1;
 int debutJeu = 0;
 int stopJeu = 0;
 long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de droite
+int minAleatoire = 0; // nombre qui servira à definir le minimum aléatoire
+int maxAleatoire = 1 ; // nombre qui servira à definir le maximum aléatoire
 int nombreBoutons = 2; // nombre de boutons pour le jeu
 int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
@@ -70,7 +72,10 @@ int btnReset = 9; // Bouton restart
 // Définition des entrée/sorties - fin
 
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons - debut
-int sequences[5][20] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
+const int nombreDeSequence = 5;
+const int nombreDePointsParSequence = 20;
+int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
+int sequenceEnCours [20]; // initialisation du tableau pour sequence en cours.
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons  fin
 
 ////////////////////////////////
@@ -279,7 +284,7 @@ void choixNouveauBouton() {
   //@Todo
 
   
-  int btnSuivant = nombreAleatoire();
+  int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   btnAllume = btnSuivant ;
   debug("Nouveau nombre aleatoire : ", 0);
   debug(String(btnSuivant), 1);
@@ -303,28 +308,16 @@ void choixNouvelleSequence() {
   
   //Initialisation de random
   //@Todo fixer min et max  
-  int sequenceAleatoire = nombreAleatoire();
-  
-  //Si le chiffre  est 1 => gauche 
-  if(1 == sequenceAleatoire){
-      allumerLeVoyantEtBouton("gauche");
-  }
-  //Si le chiffre  est 2 => droite
-  else if (2 == sequenceAleatoire){
-      allumerLeVoyantEtBouton("droite");
-  }
-  //Si le chiffre  est 2 => droite
-  else if (3 == sequenceAleatoire){
-      allumerLeVoyantEtBouton("droite");
-  }
-  //Si le chiffre  est 2 => droite
-  else if (4 == sequenceAleatoire){
-      allumerLeVoyantEtBouton("droite");
-  }
-  //Si le chiffre  est 2 => droite
-  else if (5 == sequenceAleatoire){
-      allumerLeVoyantEtBouton("droite");
-  }
+  int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
+
+  sequenceEnCours = sequences[sequenceAleatoire];
+
+  debug("Sequence choisie au hasard : n° ", 0);
+  debug(String(sequenceAleatoire), 1);
+
+  debug("Contenu de la sequence choisie au hasard : ", 1);
+  printArray(sequenceEnCours) ;
+
 }
 
 /**
@@ -515,20 +508,23 @@ void stoperPartie() {
     Fonction qui retourne nombre aleatoire
 
   */
-  long nombreAleatoire() {
-    debug("Fct nombreAleatoire", 1);
+  long nombreAleatoire(int minAleatoire, int maxAleatoire) {
+    
     randomSeed(analogRead(0));
     //nbrAleatoire = random(1, nombreBoutons + 1);
-    nbrAleatoire = random(1, 1000);
+    nbrAleatoire = random(minAleatoire, maxAleatoire);
     debug("Nombre aleatoire = ", 0);
     debug(String(nbrAleatoire), 1);
 
-    int aR = analogRead(A0) % 2;
+    /*
+     * int aR = analogRead(A0) % 2;
     debug("Analog Read = ", 0);
     debug(String(aR), 1);
+    */
 
     // test pour avoir une meilleur répartition avec nombres pairs et impairs
     // Si le nombre aléatoire est pair
+    /*
     if ( (nbrAleatoire % 2) == 0) {
       nbrAleatoire = 2 ; 
       }
@@ -536,6 +532,7 @@ void stoperPartie() {
     else{
       nbrAleatoire = 1 ;
     }
+    */
     return nbrAleatoire;
   }
 
