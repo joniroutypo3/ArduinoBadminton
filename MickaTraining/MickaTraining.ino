@@ -41,7 +41,6 @@ int maxAleatoire = 1 ; // nombre qui servira à definir le maximum aléatoire
 int nombreBoutons = 2; // nombre de boutons pour le jeu
 int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
-int nombreDeSequencesDeJeu = 5; //nombre de séquence de jeu pré-définies.
 long btnInitial;
 int btnAllume;
 int debugMoniteurSerie = 1;
@@ -72,8 +71,8 @@ int btnReset = 9; // Bouton restart
 // Définition des entrée/sorties - fin
 
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons - debut
-const int nombreDeSequence = 5;
-const int nombreDePointsParSequence = 20;
+const int nombreDeSequence = 5; //nombre de séquence de jeu pré-définies.
+const int nombreDePointsParSequence = 20; //nombre de point par sequence
 int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
 int sequenceEnCours [20]; // initialisation du tableau pour sequence en cours.
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons  fin
@@ -305,18 +304,28 @@ void choixNouveauBouton() {
 */
 void choixNouvelleSequence() {
   debug("Fct choixNouvelleSequence", 1);
+
+  randomSeed(analogRead(0));
   
   //Initialisation de random
-  //@Todo fixer min et max  
+
   int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
-
-  sequenceEnCours = sequences[sequenceAleatoire];
-
   debug("Sequence choisie au hasard : n° ", 0);
   debug(String(sequenceAleatoire), 1);
-
   debug("Contenu de la sequence choisie au hasard : ", 1);
-  printArray(sequenceEnCours) ;
+
+  //sequenceEnCours = sequences[sequenceAleatoire];
+  byte i;
+  for (i=0; i<(sizeof(sequences[sequenceAleatoire])/sizeof(int)); i++)
+  {
+    sequenceEnCours[i] = sequences[sequenceAleatoire][i];
+    debug(String(sequenceEnCours[i]), 0);
+  }
+  
+  debug(String(""), 1);
+
+  
+  //printArray(sequenceEnCours) ;
 
 }
 
