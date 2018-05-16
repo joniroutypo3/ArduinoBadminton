@@ -27,6 +27,7 @@ int tempsDeJeu = 10; //temps de jeu en secondes
 int tempsRestant; //temps de jeu restant en secondes
 unsigned int tempoDebutDePartie = 0;
 unsigned int tempoFinDePartie = 0;
+unsigned int dureePartie = 0;
 
 // Variables timer - fin
 
@@ -399,6 +400,16 @@ void arreterLeTempsDeJeu() {
 void calculerTempsMoyen() {
   debug("Fct calculerTempsMoyen", 1);
 
+  debug("Début de Sequence à : ", 0);
+  debug(String(tempoDebutDePartie), 1);
+  debug("Fin de Sequence à : ", 0);
+  debug(String(tempoFinDePartie), 1);
+
+  dureePartie = tempoFinDePartie - tempoDebutDePartie ;
+
+  debug("Durée de la sequence à : ", 0);
+  debug(String(dureePartie), 1);
+
 }
 
 /**
@@ -534,6 +545,7 @@ void stoperPartie() {
     debutJeu = 0 ;
     //réinitialise les variables
     tempoFinDePartie = millis();
+    
     remettreAZero();
   }
 
