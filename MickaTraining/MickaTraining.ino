@@ -69,11 +69,7 @@ int btnReset = 9; // Bouton restart
 // Définition des entrée/sorties - fin
 
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons - debut
-int sequence1[] = {1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2};
-int sequence2[] = {1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2};
-int sequence3[] = {2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2};
-int sequence4[] = {2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1};
-int sequence5[] = {1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1};
+int sequences[5][20] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons  fin
 
 ////////////////////////////////
