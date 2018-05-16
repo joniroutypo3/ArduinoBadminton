@@ -25,9 +25,12 @@ Timer t; // Définition de l'objet timer
 int debutTimer = 0;
 int tempsDeJeu = 10; //temps de jeu en secondes
 int tempsRestant; //temps de jeu restant en secondes
+int temporisationEntreLesPoints = 2000;
 unsigned int tempoDebutDePartie = 0;
 unsigned int tempoFinDePartie = 0;
 unsigned int dureePartie = 0;
+unsigned int dureePartieEnSecondes = 0;
+unsigned int dureePartieEnMiliSecondes = 0;
 
 // Variables timer - fin
 
@@ -405,10 +408,13 @@ void calculerTempsMoyen() {
   debug("Fin de Sequence à : ", 0);
   debug(String(tempoFinDePartie), 1);
 
-  dureePartie = tempoFinDePartie - tempoDebutDePartie ;
+  dureePartieEnSecondes = (tempoFinDePartie - tempoDebutDePartie)/1000 ;
+  dureePartieEnMiliSecondes = (tempoFinDePartie - tempoDebutDePartie) % 1000;
 
   debug("Durée de la sequence à : ", 0);
-  debug(String(dureePartie), 1);
+  debug(String(dureePartieEnSecondes), 0);
+  debug(",", 0);
+  debug(String(dureePartieEnMiliSecondes), 1);
 
 }
 
@@ -545,7 +551,10 @@ void stoperPartie() {
     debutJeu = 0 ;
     //réinitialise les variables
     tempoFinDePartie = millis();
-    
+
+    //Calcul du temps moyen
+    calculerTempsMoyen();
+
     remettreAZero();
   }
 
