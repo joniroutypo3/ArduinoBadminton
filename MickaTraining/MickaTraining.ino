@@ -84,6 +84,7 @@ const int nombreDeSequence = 5; //nombre de séquence de jeu pré-définies.
 const int nombreDePointsParSequence = 20; //nombre de point par sequence
 int nombreDePointsAJouer = nombreDePointsParSequence; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
+int nombreDePointsJouesDansLaSequence; // nombre de points joués avant fin de partie (utile si Micka arrete la séquence avant le nombre de point par séquence)
 
 int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2}, {1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2}, {2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2}, {2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1}, {1, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 1}};
 int sequenceEnCours [20]; // initialisation du tableau pour sequence en cours.
@@ -284,6 +285,8 @@ void decrementerLesAppuisRestants() {
   debug("Fct decrementerLesAppuisRestants", 1);
 
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
+  nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
+
   debug("Nombre d'AppuisRestants = ", 0);
   debug(String(nombreDePointsRestant), 1);
 
@@ -426,7 +429,11 @@ void calculerTempsTotalPartie() {
 void calculerTempsTotalDeplacement() {
   calculerTempsTotalPartie();
 
-  dureeTotaleDeplacementPartie = dureeTotalePartie - ( nombreDePointsParSequence * temporisationEntreLesPoints);
+  //dureeTotaleDeplacementPartie = dureeTotalePartie - ( nombreDePointsParSequence * temporisationEntreLesPoints);
+
+  // Prendre en compte le nombre de point joués et non Toto si Micka ne fait pas les séquences complètes
+  dureeTotaleDeplacementPartie = dureeTotalePartie - ( nombreDePointsJouesDansLaSequence * temporisationEntreLesPoints);
+
   dureeTotaleDeplacementPartieEnSecondes = dureeTotaleDeplacementPartie / 1000 ;
   dureeTotaleDeplacementPartieEnMiliSecondes = dureeTotaleDeplacementPartie % 1000;
 
@@ -442,7 +449,8 @@ void calculerTempsTotalDeplacement() {
 void calculerTempsMoyenDeplacement() {
   calculerTempsTotalDeplacement();
 
-  dureeMoyenneDeplacementPartie = dureeTotaleDeplacementPartie / nombreDePointsParSequence;
+  //dureeMoyenneDeplacementPartie = dureeTotaleDeplacementPartie / nombreDePointsParSequence;
+  dureeMoyenneDeplacementPartie = dureeTotaleDeplacementPartie / nombreDePointsJouesDansLaSequence;
   dureeMoyenneDeplacementPartieEnSecondes = dureeMoyenneDeplacementPartie / 1000 ;
   dureeMoyenneDeplacementPartieEnMiliSecondes = dureeMoyenneDeplacementPartie % 1000;
 
