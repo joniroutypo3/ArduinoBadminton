@@ -39,6 +39,7 @@ long nbrAleatoire; // nombre qui servira à choisir le bouton de gauche ou de dr
 int nombreBoutons = 2; // nombre de boutons pour le jeu
 int nombreDePointsAJouer = 5; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
+int nombreDeSequencesDeJeu = 5; //nombre de séquence de jeu pré-définies.
 long btnInitial;
 int btnAllume;
 int debugMoniteurSerie = 1;
