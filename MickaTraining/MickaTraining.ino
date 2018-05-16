@@ -512,6 +512,7 @@ void verifierBouton(int btnAVerifier) {
 
   if (btnAVerifier == btnAllume) {
     debug("Bouton appuyé = OK", 1);
+    delay(temporisationEntreLesPoints);
     choixNouveauBouton();
 
     //décrémente le nombre de points à jouer
