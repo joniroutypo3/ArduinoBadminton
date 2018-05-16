@@ -74,7 +74,7 @@ const int nombreDePointsParSequence = 20; //nombre de point par sequence
 int nombreDePointsAJouer = nombreDePointsParSequence; // nombre de points à jouer dans une partie
 int nombreDePointsRestant; // nombre de points à jouer avant fin de partie
 
-int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1,2,1,1,2,1,2,2,2,1,2,2,1,1,2,1,2,2,1,2},{1,1,2,1,2,2,1,2,2,1,1,2,1,2,1,1,1,2,1,2},{2,2,1,2,1,1,1,2,1,1,2,1,2,1,1,1,2,1,1,2},{2,1,1,1,2,1,2,1,2,1,1,2,1,2,2,1,1,2,1,1},{1,1,2,2,1,1,2,1,2,1,2,1,2,1,1,2,2,1,2,1}};
+int sequences[nombreDeSequence][nombreDePointsParSequence] = {{1, 2, 1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 2, 1, 2}, {1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2}, {2, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2}, {2, 1, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 2, 1, 1, 2, 1, 1}, {1, 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 2, 1, 2, 1}};
 int sequenceEnCours [20]; // initialisation du tableau pour sequence en cours.
 // Définition du tableau des sequences de points car l'aléatoire n'est pas viable pour 2 boutons  fin
 
@@ -100,15 +100,15 @@ void loop() {
   // Si le jeu est en cours
   if (debutJeu == 1) {
 
-      if ( nombreDePointsRestant >0){
-        //debug("debutJeu = 1 => On lance le jeu ", 1);
-        // Lecture des differents boutons
-        // Si le bouton start est pressé => relance du jeu
-        lectureDesBoutons();
-      }
-      else {
-        debug("Fin de partie après 20 points ", 1);
-      }
+    if ( nombreDePointsRestant > 0) {
+      //debug("debutJeu = 1 => On lance le jeu ", 1);
+      // Lecture des differents boutons
+      // Si le bouton start est pressé => relance du jeu
+      lectureDesBoutons();
+    }
+    else {
+      debug("Fin de partie après 20 points ", 1);
+    }
   }
 }
 
@@ -118,7 +118,7 @@ void loop() {
 */
 void allumerLesDeuxVoyants() {
   //debug("Fct allumerLesDeuxVoyants", 1);
-  
+
   allumerLeVoyant("gauche");
   allumerLeVoyant("droite");
 }
@@ -129,7 +129,7 @@ void allumerLesDeuxVoyants() {
 */
 void eteindreLesDeuxVoyants() {
   //debug("Fct eteindreLesDeuxVoyants", 1);
-  
+
   eteindreLeVoyant("gauche");
   eteindreLeVoyant("droite");
 }
@@ -143,7 +143,7 @@ void eteindreLesDeuxVoyants() {
 void allumerLeVoyant(String idVoyant) {
   debug("Fct allumerLeVoyant : ", 0);
   debug(idVoyant, 1);
-  
+
   eteindreLesDeuxVoyants();
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, HIGH);
@@ -162,7 +162,7 @@ void allumerLeVoyant(String idVoyant) {
 void eteindreLeVoyant(String idVoyant) {
   //debug("Fct eteindreLeVoyant : ", 0);
   //debug(idVoyant, 1);
-  
+
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, LOW);
   }
@@ -181,7 +181,7 @@ void eteindreLeVoyant(String idVoyant) {
 void allumerBoutonLumineux(String idBoutonLumineux) {
   debug("Fct allumerBoutonLumineux : ", 0);
   debug(idBoutonLumineux, 1);
-  
+
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, HIGH);
   }
@@ -200,7 +200,7 @@ void allumerBoutonLumineux(String idBoutonLumineux) {
 void eteindreBoutonLumineux(String idBoutonLumineux) {
   //debug("Fct eteindreBoutonLumineux : ", 0);
   //debug(idBoutonLumineux, 1);
-  
+
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, LOW);
   }
@@ -217,7 +217,7 @@ void eteindreBoutonLumineux(String idBoutonLumineux) {
 */
 void eteindreLesDeuxBoutonsLumineux() {
   //debug("Fct eteindreLesDeuxBoutonsLumineux", 1);
-  
+
   eteindreBoutonLumineux("gauche");
   eteindreBoutonLumineux("droite");
 }
@@ -231,7 +231,7 @@ void eteindreLesDeuxBoutonsLumineux() {
 void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
   //debug("Fct allumerLeVoyantEtBouton : ", 0);
   //debug(idVoyantEtBoutonLumineux, 1);
-  
+
   if (idVoyantEtBoutonLumineux == "gauche") {
     allumerBoutonLumineux("gauche");
     allumerLeVoyant("gauche");
@@ -252,7 +252,7 @@ void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
   debug("Fct eteindreLeVoyantEtBouton : ", 0);
   debug(idVoyantEtBoutonLumineux, 1);
-  
+
   if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
     eteindreLeVoyant("gauche");
@@ -295,19 +295,19 @@ void choixNouveauBouton() {
   // Si le nombre de points à jouer est supérieur à 0 on continue à choisir un autre bouton.
   //@Todo
 
-  
+
   int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   btnAllume = btnSuivant ;
   debug("Nouveau nombre aleatoire : ", 0);
   debug(String(btnSuivant), 1);
 
-  //Si le chiffre  est 1 => gauche 
-  if(1 == btnSuivant){
-      allumerLeVoyantEtBouton("gauche");
+  //Si le chiffre  est 1 => gauche
+  if (1 == btnSuivant) {
+    allumerLeVoyantEtBouton("gauche");
   }
   //Si le chiffre  est 2 => droite
-  else if (2 == btnSuivant){
-      allumerLeVoyantEtBouton("droite");
+  else if (2 == btnSuivant) {
+    allumerLeVoyantEtBouton("droite");
   }
 }
 
@@ -319,7 +319,7 @@ void choixNouvelleSequence() {
   debug("Fct choixNouvelleSequence", 1);
 
   randomSeed(analogRead(0));
-  
+
   //Initialisation de random
 
   int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
@@ -329,17 +329,17 @@ void choixNouvelleSequence() {
 
   //sequenceEnCours = sequences[sequenceAleatoire];
   byte i;
-  for (i=0; i<(sizeof(sequences[sequenceAleatoire])/sizeof(int)); i++)
+  for (i = 0; i < (sizeof(sequences[sequenceAleatoire]) / sizeof(int)); i++)
   {
     sequenceEnCours[i] = sequences[sequenceAleatoire][i];
     debug(String(sequenceEnCours[i]), 0);
   }
-  
+
   debug(String(""), 1);
-  
+
   choixNouveauBouton();
 
-  
+
   //printArray(sequenceEnCours) ;
 
 }
@@ -453,52 +453,52 @@ void lectureDuBoutonStart(int etatJeu) {
   Lecture des bouton gauche et droite
 
 */
-void lectureDesBoutons(){
+void lectureDesBoutons() {
   //debug("Fct lectureDesBoutons", 1);
-  
-    //Lecture du bouton 1
-    btn1Appuye=digitalRead(btn1);
-    //Serial.print("valeur du bouton 1: ");
-    //Serial.println(btn1Appuye);
-    if(btn1Appuye==1)
-    {
-      verifierBouton(1);
-    }
-    
-    //Lecture du bouton 2
-    btn2Appuye=digitalRead(btn2);
-    //Serial.print("valeur du bouton 2: ");
-    //Serial.println(btn1Appuye);
- 
-    if(btn2Appuye==1)
-    {
-      verifierBouton(2);
-    }
 
-    //Lecture du bouton start
-    lectureDuBoutonStart(debutJeu);
+  //Lecture du bouton 1
+  btn1Appuye = digitalRead(btn1);
+  //Serial.print("valeur du bouton 1: ");
+  //Serial.println(btn1Appuye);
+  if (btn1Appuye == 1)
+  {
+    verifierBouton(1);
+  }
+
+  //Lecture du bouton 2
+  btn2Appuye = digitalRead(btn2);
+  //Serial.print("valeur du bouton 2: ");
+  //Serial.println(btn1Appuye);
+
+  if (btn2Appuye == 1)
+  {
+    verifierBouton(2);
+  }
+
+  //Lecture du bouton start
+  lectureDuBoutonStart(debutJeu);
 }
 
 /**
   Fonction qui verifie si le bouton appuyé est le bon
 
 */
-void verifierBouton(int btnAVerifier){
+void verifierBouton(int btnAVerifier) {
 
   debug("Fct lectureDesBoutons", 1);
-  
+
   debug("Bouton appuyé = n°", 0);
   debug(String(btnAVerifier), 1);
   debug("Bouton allumé = ", 0);
   debug(String(btnAllume), 1);
 
-  if(btnAVerifier == btnAllume){ 
+  if (btnAVerifier == btnAllume) {
     debug("Bouton appuyé = OK", 1);
     choixNouveauBouton();
 
     //décrémente le nombre de points à jouer
     decrementerLesAppuisRestants();
-    
+
   }
 }
 
@@ -510,7 +510,7 @@ void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
   //
   nombreDePointsRestant = nombreDePointsAJouer;
-  
+
   choixNouvelleSequence();
   //
   //choixNouveauBouton();
@@ -527,7 +527,7 @@ void demarrerPartie() {
 */
 void stoperPartie() {
   debug("Fct stoperPartie", 1);
-  
+
   if (debutJeu == 1) {
     //Stop le jeu
     debutJeu = 0 ;
@@ -537,53 +537,53 @@ void stoperPartie() {
   }
 
 }
-  /**
-    Fonction qui retourne nombre aleatoire
+/**
+  Fonction qui retourne nombre aleatoire
 
-  */
-  long nombreAleatoire(int minAleatoire, int maxAleatoire) {
-    
-    randomSeed(analogRead(0));
-    //nbrAleatoire = random(1, nombreBoutons + 1);
-    nbrAleatoire = random(minAleatoire, maxAleatoire);
-    debug("Nombre aleatoire = ", 0);
-    debug(String(nbrAleatoire), 1);
+*/
+long nombreAleatoire(int minAleatoire, int maxAleatoire) {
 
-    /*
-     * int aR = analogRead(A0) % 2;
+  randomSeed(analogRead(0));
+  //nbrAleatoire = random(1, nombreBoutons + 1);
+  nbrAleatoire = random(minAleatoire, maxAleatoire);
+  debug("Nombre aleatoire = ", 0);
+  debug(String(nbrAleatoire), 1);
+
+  /*
+     int aR = analogRead(A0) % 2;
     debug("Analog Read = ", 0);
     debug(String(aR), 1);
-    */
-
-    // test pour avoir une meilleur répartition avec nombres pairs et impairs
-    // Si le nombre aléatoire est pair
-    /*
-    if ( (nbrAleatoire % 2) == 0) {
-      nbrAleatoire = 2 ; 
-      }
-      // Sinon le nombre aléatoire est impair
-    else{
-      nbrAleatoire = 1 ;
-    }
-    */
-    return nbrAleatoire;
-  }
-
-
-  /**
-    Fonction qui retourne le message transmis sur le moniteur serie
-
   */
 
-  void debug(String messageDebug, int retourLigne) {
-    if (1 == debugMoniteurSerie) {
-      if (1 == retourLigne) {
-        Serial.println(messageDebug);
-      }
-      else
-      {
-        Serial.print(messageDebug);
-      }
+  // test pour avoir une meilleur répartition avec nombres pairs et impairs
+  // Si le nombre aléatoire est pair
+  /*
+    if ( (nbrAleatoire % 2) == 0) {
+    nbrAleatoire = 2 ;
+    }
+    // Sinon le nombre aléatoire est impair
+    else{
+    nbrAleatoire = 1 ;
+    }
+  */
+  return nbrAleatoire;
+}
+
+
+/**
+  Fonction qui retourne le message transmis sur le moniteur serie
+
+*/
+
+void debug(String messageDebug, int retourLigne) {
+  if (1 == debugMoniteurSerie) {
+    if (1 == retourLigne) {
+      Serial.println(messageDebug);
+    }
+    else
+    {
+      Serial.print(messageDebug);
     }
   }
+}
 
