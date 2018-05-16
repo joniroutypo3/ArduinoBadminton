@@ -278,7 +278,7 @@ void decrementerLesAppuisRestants() {
 void choixNouveauBouton() {
   debug("Fct choixNouveauBouton", 1);
 
-  testerNombreAppuiRestant();
+  //testerNombreAppuiRestant();
 
   // On eteind tous les voyants et boutons
   //@Todo
@@ -489,6 +489,10 @@ void verifierBouton(int btnAVerifier){
   if(btnAVerifier == btnAllume){ 
     debug("Bouton appuyé = OK", 1);
     choixNouveauBouton();
+
+    //décrémente le nombre de points à jouer
+    decrementerLesAppuisRestants();
+    
   }
 }
 
