@@ -282,8 +282,6 @@ void choixNouveauBouton() {
   //@Todo
 
   
-  //Initialisation de random
-  randomSeed(analogRead(0));
   int btnSuivant = nombreAleatoire();
   btnAllume = btnSuivant ;
   debug("Nouveau nombre aleatoire : ", 0);
@@ -295,6 +293,39 @@ void choixNouveauBouton() {
   }
   //Si le chiffre  est 2 => droite
   else if (2 == btnSuivant){
+      allumerLeVoyantEtBouton("droite");
+  }
+}
+
+/**
+  choisi d'une séquence de jeu au hasard.
+
+*/
+void choixNouvelleSequence() {
+  debug("Fct choixNouvelleSequence", 1);
+  
+  //Initialisation de random
+  //@Todo fixer min et max  
+  int sequenceAleatoire = nombreAleatoire();
+  
+  //Si le chiffre  est 1 => gauche 
+  if(1 == sequenceAleatoire){
+      allumerLeVoyantEtBouton("gauche");
+  }
+  //Si le chiffre  est 2 => droite
+  else if (2 == sequenceAleatoire){
+      allumerLeVoyantEtBouton("droite");
+  }
+  //Si le chiffre  est 2 => droite
+  else if (3 == sequenceAleatoire){
+      allumerLeVoyantEtBouton("droite");
+  }
+  //Si le chiffre  est 2 => droite
+  else if (4 == sequenceAleatoire){
+      allumerLeVoyantEtBouton("droite");
+  }
+  //Si le chiffre  est 2 => droite
+  else if (5 == sequenceAleatoire){
       allumerLeVoyantEtBouton("droite");
   }
 }
@@ -457,7 +488,7 @@ void verifierBouton(int btnAVerifier){
 */
 void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
-
+  choixNouvelleSequence();
   //
   choixNouveauBouton();
   // On donne la valeur 1 à l'état du jeu
