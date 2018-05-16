@@ -108,6 +108,7 @@ void loop() {
     }
     else {
       debug("Fin de partie après 20 points ", 1);
+      stoperPartie();
     }
   }
 }
