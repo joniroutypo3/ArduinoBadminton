@@ -355,7 +355,8 @@ void choixNouvelleSequence() {
 */
 void attendreTemporisation() {
   debug("Fct attendreTemporisation", 1);
-
+  eteindreLesDeuxVoyants();
+  delay(temporisationEntreLesPoints);
 }
 
 /**
@@ -384,7 +385,6 @@ void demarrerLeTempsDeJeu() {
 */
 void pauserLeTempsDeJeu() {
   debug("Fct pauserLeTempsDeJeu", 1);
-
 }
 
 /**
@@ -408,7 +408,7 @@ void calculerTempsMoyen() {
   debug("Fin de Sequence à : ", 0);
   debug(String(tempoFinDePartie), 1);
 
-  dureePartieEnSecondes = (tempoFinDePartie - tempoDebutDePartie)/1000 ;
+  dureePartieEnSecondes = (tempoFinDePartie - tempoDebutDePartie) / 1000 ;
   dureePartieEnMiliSecondes = (tempoFinDePartie - tempoDebutDePartie) % 1000;
 
   debug("Durée de la sequence à : ", 0);
@@ -512,7 +512,7 @@ void verifierBouton(int btnAVerifier) {
 
   if (btnAVerifier == btnAllume) {
     debug("Bouton appuyé = OK", 1);
-    delay(temporisationEntreLesPoints);
+    attendreTemporisation();
     choixNouveauBouton();
 
     //décrémente le nombre de points à jouer
