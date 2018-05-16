@@ -278,6 +278,8 @@ void decrementerLesAppuisRestants() {
 void choixNouveauBouton() {
   debug("Fct choixNouveauBouton", 1);
 
+  testerNombreAppuiRestant();
+
   // On eteind tous les voyants et boutons
   //@Todo
 
@@ -328,6 +330,8 @@ void choixNouvelleSequence() {
   }
   
   debug(String(""), 1);
+  
+  choixNouveauBouton();
 
   
   //printArray(sequenceEnCours) ;
@@ -349,6 +353,8 @@ void attendreTemporisation() {
 */
 void testerNombreAppuiRestant() {
   debug("Fct testerNombreAppuiRestant", 1);
+  debug("NombreAppuiRestant : ", 0);
+  debug(String(nombreDePointsRestant), 1);
 
 }
 
@@ -492,6 +498,9 @@ void verifierBouton(int btnAVerifier){
 */
 void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
+  //
+  nombreDePointsRestant = nombreDePointsAJouer;
+  
   choixNouvelleSequence();
   //
   //choixNouveauBouton();
