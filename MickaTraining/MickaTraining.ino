@@ -329,6 +329,9 @@ void choixNouveauBouton() {
   else if (2 == btnSuivant) {
     allumerLeVoyantEtBouton("droite");
   }
+
+  //décrémente le nombre de points à jouer
+    decrementerLesAppuisRestants();
 }
 
 /**
@@ -602,9 +605,6 @@ void verifierBouton(int btnAVerifier) {
     //debug("Bouton appuyé = OK", 1);
     attendreTemporisation();
     choixNouveauBouton();
-
-    //décrémente le nombre de points à jouer
-    decrementerLesAppuisRestants();
 
   }
 }
