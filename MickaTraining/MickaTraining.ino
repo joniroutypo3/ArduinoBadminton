@@ -311,7 +311,8 @@ void choixNouveauBouton() {
   //@Todo
 
 
-  int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
+  //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
+  int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
   btnAllume = btnSuivant ;
   debug("Nouveau nombre aleatoire : ", 0);
   debug(String(btnSuivant), 1);
@@ -351,6 +352,9 @@ void choixNouvelleSequence() {
   }
 
   debug(String(""), 1);
+
+  //Réinitialiser le nombre de point
+  nombreDePointsRestant = nombreDePointsAJouer;
 
   choixNouveauBouton();
 
@@ -493,12 +497,20 @@ void afficherLesTemps() {
 void remettreAZero() {
   debug("Fct remettreAZero", 1);
 
-  //Réinitialiser le nombre de point
-  nombreDePointsRestant = nombreDePointsAJouer;
+  // Remise des variables à l'état initial
+  tempoDebutDePartie = 0;
+  tempoFinDePartie = 0;
+  dureeTotalePartie = 0;
+  dureeTotalePartieEnSecondes = 0;
+  dureeTotalePartieEnMiliSecondes = 0;
+  dureeTotaleDeplacementPartie = 0;
+  dureeTotaleDeplacementPartieEnSecondes = 0;
+  dureeTotaleDeplacementPartieEnMiliSecondes = 0;
+  dureeMoyenneDeplacementPartie = 0;
+  dureeMoyenneDeplacementPartieEnSecondes = 0;
+  dureeMoyenneDeplacementPartieEnMiliSecondes = 0;
 
   //Effacer le temps
-
-
 
 }
 
