@@ -119,7 +119,6 @@ void loop() {
       lectureDesBoutons();
     }
     else {
-      debug(" ------ Fin de partie après " +  String(nombreDePointsJouesDansLaSequence) + " points  ------ ", 1);
       stoperPartie();
     }
   }
@@ -311,7 +310,8 @@ void choixNouveauBouton() {
 
   // Si le nombre de points à jouer est supérieur à 0 on continue à choisir un autre bouton.
   //@Todo
-
+  
+  debug("Nombre de points joué dans la séquence : " + String(nombreDePointsJouesDansLaSequence), 1);
 
   //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
@@ -359,6 +359,7 @@ void choixNouvelleSequence() {
 
   //Réinitialiser le nombre de point
   nombreDePointsRestant = nombreDePointsAJouer;
+  debug("Nombre de points à jouer " + String(nombreDePointsRestant) + " l.362", 1);
 
   choixNouveauBouton();
 
@@ -517,6 +518,7 @@ void remettreAZero() {
   dureeMoyenneDeplacementPartie = 0;
   dureeMoyenneDeplacementPartieEnSecondes = 0;
   dureeMoyenneDeplacementPartieEnMiliSecondes = 0;
+  nombreDePointsJouesDansLaSequence = 0;
 
   //Effacer le temps
 
@@ -616,6 +618,8 @@ void demarrerPartie() {
   //
   nombreDePointsRestant = nombreDePointsAJouer;
 
+  debug("Nombre de points à jouer " + String(nombreDePointsRestant) + " l.619", 1);
+
   choixNouvelleSequence();
   //
   //choixNouveauBouton();
@@ -632,6 +636,8 @@ void demarrerPartie() {
 */
 void stoperPartie() {
   debug("Fct stoperPartie", 1);
+
+  debug(" ------ Fin de partie après " +  String(nombreDePointsJouesDansLaSequence) + " points  ------ ", 1);
 
   if (debutJeu == 1) {
     //Stop le jeu
