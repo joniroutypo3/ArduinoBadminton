@@ -106,7 +106,7 @@ void loop() {
   // Si le jeu n'est pas encore commencé
   if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
-    debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
+    //debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
@@ -119,7 +119,7 @@ void loop() {
       lectureDesBoutons();
     }
     else {
-      debug("Fin de partie après" +  String(nombreDePointsJouesDansLaSequence) + " points ", 1);
+      debug(" ------ Fin de partie après " +  String(nombreDePointsJouesDansLaSequence) + " points  ------ ", 1);
       stoperPartie();
     }
   }
@@ -155,7 +155,7 @@ void eteindreLesDeuxVoyants() {
 */
 void allumerLeVoyant(String idVoyant) {
   //debug("Fct allumerLeVoyant : ", 0);
-  debug(idVoyant, 1);
+  //debug(idVoyant, 1);
 
   eteindreLesDeuxVoyants();
   if (idVoyant == "gauche") {
@@ -287,8 +287,10 @@ void decrementerLesAppuisRestants() {
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
   nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
 
+  /*
   debug("Nombre d'AppuisRestants = ", 0);
   debug(String(nombreDePointsRestant), 1);
+  */
 
 }
 
@@ -518,6 +520,11 @@ void remettreAZero() {
 
   //Effacer le temps
 
+  debug("----------------------------------------", 1);
+  
+  debug("----------------------------------------", 1);
+  debug("----------------------------------------", 1);
+
 }
 
 /**
@@ -580,7 +587,7 @@ void lectureDesBoutons() {
 */
 void verifierBouton(int btnAVerifier) {
 
-  debug("Fct verifierBouton", 1);
+  //debug("Fct verifierBouton", 1);
 
   /*
     debug("Bouton appuyé = n°", 0);
