@@ -192,8 +192,8 @@ void eteindreLeVoyant(String idVoyant) {
 
 */
 void allumerBoutonLumineux(String idBoutonLumineux) {
-  debug("Fct allumerBoutonLumineux : ", 0);
-  debug(idBoutonLumineux, 1);
+  //debug("Fct allumerBoutonLumineux : ", 0);
+  //debug(idBoutonLumineux, 1);
 
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, HIGH);
@@ -282,7 +282,7 @@ void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void decrementerLesAppuisRestants() {
-  debug("Fct decrementerLesAppuisRestants", 1);
+  //debug("Fct decrementerLesAppuisRestants", 1);
 
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
   nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
@@ -368,7 +368,7 @@ void choixNouvelleSequence() {
 
 */
 void attendreTemporisation() {
-  debug("Fct attendreTemporisation", 1);
+  //debug("Fct attendreTemporisation", 1);
   eteindreLesDeuxVoyants();
   delay(temporisationEntreLesPoints);
 }
@@ -470,11 +470,12 @@ void afficherLesTemps() {
   debug("Fct afficherLesTemps", 1);
 
   calculerTempsMoyenDeplacement();
-
-  debug("Début de Sequence à : ", 0);
-  debug(String(tempoDebutDePartie), 1);
-  debug("Fin de Sequence à : ", 0);
-  debug(String(tempoFinDePartie), 1);
+  /*
+    debug("Début de Sequence à : ", 0);
+    debug(String(tempoDebutDePartie), 1);
+    debug("Fin de Sequence à : ", 0);
+    debug(String(tempoFinDePartie), 1);
+  */
 
   debug("temps de déplacement total : ", 0);
   debug(String(dureeTotaleDeplacementPartieEnSecondes), 0);
@@ -579,13 +580,15 @@ void verifierBouton(int btnAVerifier) {
 
   debug("Fct lectureDesBoutons", 1);
 
-  debug("Bouton appuyé = n°", 0);
-  debug(String(btnAVerifier), 1);
-  debug("Bouton allumé = ", 0);
-  debug(String(btnAllume), 1);
+  /*
+    debug("Bouton appuyé = n°", 0);
+    debug(String(btnAVerifier), 1);
+    debug("Bouton allumé = ", 0);
+    debug(String(btnAllume), 1);
+  */
 
   if (btnAVerifier == btnAllume) {
-    debug("Bouton appuyé = OK", 1);
+    //debug("Bouton appuyé = OK", 1);
     attendreTemporisation();
     choixNouveauBouton();
 
