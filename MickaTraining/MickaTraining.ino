@@ -119,7 +119,7 @@ void loop() {
       lectureDesBoutons();
     }
     else {
-      debug("Fin de partie après 20 points ", 1);
+      debug("Fin de partie après" +  String(nombreDePointsJouesDansLaSequence) + " points ", 1);
       stoperPartie();
     }
   }
@@ -496,6 +496,9 @@ void afficherLesTemps() {
 */
 void remettreAZero() {
   debug("Fct remettreAZero", 1);
+
+  eteindreLeVoyantEtBouton("gauche");
+  eteindreLeVoyantEtBouton("droite");
 
   // Remise des variables à l'état initial
   tempoDebutDePartie = 0;
