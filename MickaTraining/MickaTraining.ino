@@ -284,7 +284,6 @@ void decrementerLesAppuisRestants() {
   //debug("Fct decrementerLesAppuisRestants", 1);
 
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
-  nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
 
   /*
   debug("Nombre d'AppuisRestants = ", 0);
@@ -603,6 +602,7 @@ void verifierBouton(int btnAVerifier) {
 
   if (btnAVerifier == btnAllume) {
     //debug("Bouton appuyé = OK", 1);
+    nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
     attendreTemporisation();
     choixNouveauBouton();
 
