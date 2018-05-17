@@ -106,7 +106,7 @@ void loop() {
   // Si le jeu n'est pas encore commencé
   if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
-    //debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
+    debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
@@ -154,7 +154,7 @@ void eteindreLesDeuxVoyants() {
 
 */
 void allumerLeVoyant(String idVoyant) {
-  debug("Fct allumerLeVoyant : ", 0);
+  //debug("Fct allumerLeVoyant : ", 0);
   debug(idVoyant, 1);
 
   eteindreLesDeuxVoyants();
@@ -297,7 +297,7 @@ void decrementerLesAppuisRestants() {
 
 */
 void choixNouveauBouton() {
-  debug("Fct choixNouveauBouton", 1);
+  //debug("Fct choixNouveauBouton", 1);
 
   //testerNombreAppuiRestant();
 
@@ -314,8 +314,10 @@ void choixNouveauBouton() {
   //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
   btnAllume = btnSuivant ;
+  /*
   debug("Nouveau nombre aleatoire : ", 0);
   debug(String(btnSuivant), 1);
+  */
 
   //Si le chiffre  est 1 => gauche
   if (1 == btnSuivant) {
@@ -578,7 +580,7 @@ void lectureDesBoutons() {
 */
 void verifierBouton(int btnAVerifier) {
 
-  debug("Fct lectureDesBoutons", 1);
+  debug("Fct verifierBouton", 1);
 
   /*
     debug("Bouton appuyé = n°", 0);
