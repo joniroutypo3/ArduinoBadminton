@@ -262,8 +262,10 @@ void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
+  /*
   debug("Fct eteindreLeVoyantEtBouton : ", 0);
   debug(idVoyantEtBoutonLumineux, 1);
+  */
 
   if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
@@ -286,8 +288,8 @@ void decrementerLesAppuisRestants() {
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
 
   /*
-  debug("Nombre d'AppuisRestants = ", 0);
-  debug(String(nombreDePointsRestant), 1);
+    debug("Nombre d'AppuisRestants = ", 0);
+    debug(String(nombreDePointsRestant), 1);
   */
 
 }
@@ -309,15 +311,15 @@ void choixNouveauBouton() {
 
   // Si le nombre de points à jouer est supérieur à 0 on continue à choisir un autre bouton.
   //@Todo
-  
-  debug("Nombre de points joué dans la séquence : " + String(nombreDePointsJouesDansLaSequence), 1);
+
+  //debug("Nombre de points joué dans la séquence : " + String(nombreDePointsJouesDansLaSequence), 1);
 
   //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
   btnAllume = btnSuivant ;
   /*
-  debug("Nouveau nombre aleatoire : ", 0);
-  debug(String(btnSuivant), 1);
+    debug("Nouveau nombre aleatoire : ", 0);
+    debug(String(btnSuivant), 1);
   */
 
   //Si le chiffre  est 1 => gauche
@@ -330,7 +332,7 @@ void choixNouveauBouton() {
   }
 
   //décrémente le nombre de points à jouer
-    decrementerLesAppuisRestants();
+  decrementerLesAppuisRestants();
 }
 
 /**
@@ -474,15 +476,17 @@ void calculerTempsMoyenDeplacement() {
 
 */
 void afficherLesTemps() {
-  debug("Fct afficherLesTemps", 1);
+  //debug("Fct afficherLesTemps", 1);
 
   calculerTempsMoyenDeplacement();
-  /*
+  
+    /*
     debug("Début de Sequence à : ", 0);
     debug(String(tempoDebutDePartie), 1);
     debug("Fin de Sequence à : ", 0);
     debug(String(tempoFinDePartie), 1);
-  */
+    */
+  
 
   debug("temps de déplacement total : ", 0);
   debug(String(dureeTotaleDeplacementPartieEnSecondes), 0);
@@ -503,7 +507,7 @@ void afficherLesTemps() {
 
 */
 void remettreAZero() {
-  debug("Fct remettreAZero", 1);
+  //debug("Fct remettreAZero", 1);
 
   eteindreLeVoyantEtBouton("gauche");
   eteindreLeVoyantEtBouton("droite");
@@ -525,7 +529,7 @@ void remettreAZero() {
   //Effacer le temps
 
   debug("----------------------------------------", 1);
-  
+
   debug("----------------------------------------", 1);
   debug("----------------------------------------", 1);
 
