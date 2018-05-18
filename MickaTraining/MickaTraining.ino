@@ -474,6 +474,12 @@ void afficherLesTemps() {
   debug("temps de déplacement total : " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes), 1);
   debug("temps de déplacement moyen : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
 
+  String ligneUne = String(nombreDePointsJouesDansLaSequence) + "pts en " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes) +"s" ;
+  String ligneDeux = "Moyenne : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes) +"s" ;
+
+  afficheLCDLigne1(ligneUne);
+  afficheLCDLigne2(ligneDeux);
+  
 }
 
 /**
@@ -590,7 +596,10 @@ void verifierBouton(int btnAVerifier) {
 */
 void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
-  //
+
+  //Vider l'ecran en début de partie
+  lcd.clear();
+  
   nombreDePointsRestant = nombreDePointsAJouer;
 
   //debug("Nombre de points à jouer (2) " + String(nombreDePointsRestant), 1);
@@ -678,4 +687,21 @@ void debug(String messageDebug, int retourLigne) {
     }
   }
 }
+
+// GESTION DE L'AFFICHAGE LCD 16x2 - DEBUT
+
+void afficheLCDLigne1(String Message){
+  lcd.setCursor(0,0); 
+  lcd.print(Message);
+}
+void afficheLCDLigne2(String Message){
+  lcd.setCursor(0,1); 
+  lcd.print(Message);
+}
+
+void effaccerEcran(){
+  lcd.clear();
+}
+
+// GESTION DE L'AFFICHAGE LCD 16x2 - FIN
 
