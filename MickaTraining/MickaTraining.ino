@@ -340,15 +340,17 @@ void choixNouveauBouton() {
 
 */
 void choixNouvelleSequence() {
-  debug("Fct choixNouvelleSequence", 1);
+  //debug("Fct choixNouvelleSequence", 1);
 
   randomSeed(analogRead(0));
 
   //Initialisation de random
 
   int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
+  /*
   debug("Sequence choisie au hasard : n° ", 0);
   debug(String(sequenceAleatoire), 1);
+  */
   debug("Contenu de la sequence choisie au hasard : ", 1);
 
   //sequenceEnCours = sequences[sequenceAleatoire];
@@ -363,7 +365,7 @@ void choixNouvelleSequence() {
 
   //Réinitialiser le nombre de point
   nombreDePointsRestant = nombreDePointsAJouer;
-  debug("Nombre de points à jouer " + String(nombreDePointsRestant) + " l.362", 1);
+  //debug("Nombre de points à jouer (1) " + String(nombreDePointsRestant) , 1);
 
   choixNouveauBouton();
 
@@ -548,12 +550,12 @@ void lectureDuBoutonStart(int etatJeu) {
   btnResetAppuye = digitalRead(btnReset);
   if (btnResetAppuye == 1 && etatJeu == 0)
   {
-    debug("Demmarage de partie dans Fct lectureDuBoutonStart", 1);
+    //debug("Demmarage de partie dans Fct lectureDuBoutonStart", 1);
     demarrerPartie();
   }
   if (btnResetAppuye == 1 && etatJeu == 1)
   {
-    debug("Stop de partie dans Fct lectureDuBoutonStart", 1);
+    //debug("Stop de partie dans Fct lectureDuBoutonStart", 1);
     stoperPartie();
   }
 
@@ -622,7 +624,7 @@ void demarrerPartie() {
   //
   nombreDePointsRestant = nombreDePointsAJouer;
 
-  debug("Nombre de points à jouer " + String(nombreDePointsRestant) + " l.619", 1);
+  //debug("Nombre de points à jouer (2) " + String(nombreDePointsRestant), 1);
 
   choixNouvelleSequence();
   //
@@ -639,7 +641,7 @@ void demarrerPartie() {
 
 */
 void stoperPartie() {
-  debug("Fct stoperPartie", 1);
+  //debug("Fct stoperPartie", 1);
 
   debug(" ------ Fin de partie après " +  String(nombreDePointsJouesDansLaSequence) + " points  ------ ", 1);
 
@@ -667,8 +669,10 @@ long nombreAleatoire(int minAleatoire, int maxAleatoire) {
   randomSeed(analogRead(0));
   //nbrAleatoire = random(1, nombreBoutons + 1);
   nbrAleatoire = random(minAleatoire, maxAleatoire);
+  /*
   debug("Nombre aleatoire = ", 0);
   debug(String(nbrAleatoire), 1);
+  */
 
   /*
      int aR = analogRead(A0) % 2;
