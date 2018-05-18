@@ -359,9 +359,6 @@ void choixNouvelleSequence() {
 
   choixNouveauBouton();
 
-
-  //printArray(sequenceEnCours) ;
-
 }
 
 /**
