@@ -635,7 +635,10 @@ void verifierBouton(int btnAVerifier) {
 */
 void demarrerPartie() {
   debug("Fct demarrerPartie", 1);
-  //
+
+  //Vider l'ecran en début de partie
+  lcd.clear();  
+
   nombreDePointsRestant = nombreDePointsAJouer;
 
   debug("Nombre de points à jouer " + String(nombreDePointsRestant) + " l.619", 1);
