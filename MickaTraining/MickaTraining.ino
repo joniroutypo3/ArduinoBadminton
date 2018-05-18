@@ -99,6 +99,8 @@ void setup()
   //t.every(1000, envoiDecompte); // et celle-ci qui appelle la fonction 'envoi' toutes les secondes
   lcd.init();
   lcd.backlight();
+  afficheLCDLigne1("ArduiBad v.1");
+  afficheLCDLigne2("Appuyer -> start");
 }
 
 
