@@ -498,6 +498,21 @@ void afficherLesTemps() {
   String ligneUne = String(nombreDePointsJouesDansLaSequence) + "pts en " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes) + "s" ;
   String ligneDeux = "Moyenne : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes) + "s" ;
 
+  /*
+    String ligneUne = "J";
+    ligneUne.concat(nombreDePointsJoues);
+    ligneUne.concat("/");
+    ligneUne.concat("G");
+    ligneUne.concat(nombreDePointsGagnes);
+    ligneUne.concat("/");
+    ligneUne.concat("P");
+    ligneUne.concat(nombreDePointsPerdus);
+    ligneUne.concat("/");
+    ligneUne.concat("T");
+    ligneUne.concat(nombreDePointsTentes);
+
+  */
+
   afficheLCDLigne1(ligneUne);
   afficheLCDLigne2(ligneDeux);
 
