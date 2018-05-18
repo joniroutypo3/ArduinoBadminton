@@ -626,7 +626,11 @@ void verifierBouton(int btnAVerifier) {
   if (btnAVerifier == btnAllume) {
     //debug("Bouton appuyé = OK", 1);
     nombreDePointsJouesDansLaSequence = nombreDePointsAJouer - nombreDePointsRestant ;
-    attendreTemporisation();
+    
+    // Test du nombre de points restant pour éviter d'ajouter 2 secondes d'attente après le dernier point.
+    if ( nombreDePointsRestant >= 0 ) {
+      attendreTemporisation();
+      }
     choixNouveauBouton();
 
   }
