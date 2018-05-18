@@ -258,9 +258,9 @@ void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  
+
   //debug("Fct eteindreLeVoyantEtBouton : " + String(idVoyantEtBoutonLumineux), 1);
-  
+
 
   if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
@@ -282,7 +282,7 @@ void decrementerLesAppuisRestants() {
 
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
 
-    //debug("Nombre d'AppuisRestants = " + String(nombreDePointsRestant), 1);
+  //debug("Nombre d'AppuisRestants = " + String(nombreDePointsRestant), 1);
 
 }
 
@@ -309,9 +309,9 @@ void choixNouveauBouton() {
   //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
   btnAllume = btnSuivant ;
-  
-    //debug("Nouveau nombre aleatoire : " + String(btnSuivant), 1);
-    
+
+  //debug("Nouveau nombre aleatoire : " + String(btnSuivant), 1);
+
 
   //Si le chiffre  est 1 => gauche
   if (1 == btnSuivant) {
@@ -338,9 +338,9 @@ void choixNouvelleSequence() {
   //Initialisation de random
 
   int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
-  
+
   //debug("Sequence choisie au hasard : n° " + String(sequenceAleatoire), 1);
-  
+
   debug("Contenu de la sequence choisie au hasard : ", 1);
 
   //sequenceEnCours = sequences[sequenceAleatoire];
@@ -467,19 +467,34 @@ void afficherLesTemps() {
   //debug("Fct afficherLesTemps", 1);
 
   calculerTempsMoyenDeplacement();
-  
-    //debug("Début de Sequence à : " + String(tempoDebutDePartie), 1);
-    //debug("Fin de Sequence à : " + String(tempoFinDePartie), 1);
-    
+
+  //debug("Début de Sequence à : " + String(tempoDebutDePartie), 1);
+  //debug("Fin de Sequence à : " + String(tempoFinDePartie), 1);
+
   debug("temps de déplacement total : " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes), 1);
   debug("temps de déplacement moyen : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
 
-  String ligneUne = String(nombreDePointsJouesDansLaSequence) + "pts en " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes) +"s" ;
-  String ligneDeux = "Moyenne : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes) +"s" ;
+  String ligneUne = String(nombreDePointsJouesDansLaSequence) + "pts en " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes) + "s" ;
+  String ligneDeux = "Moyenne : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes) + "s" ;
+
+  /*
+    String ligneUne = "J";
+    ligneUne.concat(nombreDePointsJoues);
+    ligneUne.concat("/");
+    ligneUne.concat("G");
+    ligneUne.concat(nombreDePointsGagnes);
+    ligneUne.concat("/");
+    ligneUne.concat("P");
+    ligneUne.concat(nombreDePointsPerdus);
+    ligneUne.concat("/");
+    ligneUne.concat("T");
+    ligneUne.concat(nombreDePointsTentes);
+
+  */
 
   afficheLCDLigne1(ligneUne);
   afficheLCDLigne2(ligneDeux);
-  
+
 }
 
 /**
@@ -577,8 +592,8 @@ void verifierBouton(int btnAVerifier) {
 
   //debug("Fct verifierBouton", 1);
 
-    //debug("Bouton appuyé = n°" + String(btnAVerifier), 1);
-    //debug("Bouton allumé = " + String(btnAllume), 1);
+  //debug("Bouton appuyé = n°" + String(btnAVerifier), 1);
+  //debug("Bouton allumé = " + String(btnAllume), 1);
 
 
   if (btnAVerifier == btnAllume) {
@@ -599,7 +614,7 @@ void demarrerPartie() {
 
   //Vider l'ecran en début de partie
   lcd.clear();
-  
+
   nombreDePointsRestant = nombreDePointsAJouer;
 
   //debug("Nombre de points à jouer (2) " + String(nombreDePointsRestant), 1);
@@ -647,9 +662,9 @@ long nombreAleatoire(int minAleatoire, int maxAleatoire) {
   randomSeed(analogRead(0));
   //nbrAleatoire = random(1, nombreBoutons + 1);
   nbrAleatoire = random(minAleatoire, maxAleatoire);
-  
+
   //debug("Nombre aleatoire = " + String(nbrAleatoire), 1);
-  
+
 
   /*
      int aR = analogRead(A0) % 2;
@@ -690,16 +705,16 @@ void debug(String messageDebug, int retourLigne) {
 
 // GESTION DE L'AFFICHAGE LCD 16x2 - DEBUT
 
-void afficheLCDLigne1(String Message){
-  lcd.setCursor(0,0); 
+void afficheLCDLigne1(String Message) {
+  lcd.setCursor(0, 0);
   lcd.print(Message);
 }
-void afficheLCDLigne2(String Message){
-  lcd.setCursor(0,1); 
+void afficheLCDLigne2(String Message) {
+  lcd.setCursor(0, 1);
   lcd.print(Message);
 }
 
-void effaccerEcran(){
+void effaccerEcran() {
   lcd.clear();
 }
 
