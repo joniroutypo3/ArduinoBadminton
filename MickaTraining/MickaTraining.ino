@@ -153,8 +153,8 @@ void eteindreLesDeuxVoyants() {
 
 */
 void allumerLeVoyant(String idVoyant) {
-  //debug("Fct allumerLeVoyant : ", 0);
-  //debug(idVoyant, 1);
+  //debug("Fct allumerLeVoyant : " + String(idVoyant), 1);
+
 
   eteindreLesDeuxVoyants();
   if (idVoyant == "gauche") {
@@ -172,8 +172,7 @@ void allumerLeVoyant(String idVoyant) {
 
 */
 void eteindreLeVoyant(String idVoyant) {
-  //debug("Fct eteindreLeVoyant : ", 0);
-  //debug(idVoyant, 1);
+  //debug("Fct eteindreLeVoyant : " + String(idVoyant), 1);
 
   if (idVoyant == "gauche") {
     digitalWrite(voyantGauche, LOW);
@@ -191,8 +190,7 @@ void eteindreLeVoyant(String idVoyant) {
 
 */
 void allumerBoutonLumineux(String idBoutonLumineux) {
-  //debug("Fct allumerBoutonLumineux : ", 0);
-  //debug(idBoutonLumineux, 1);
+  //debug("Fct allumerBoutonLumineux : " + String(idBoutonLumineux), 1);
 
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, HIGH);
@@ -210,8 +208,7 @@ void allumerBoutonLumineux(String idBoutonLumineux) {
 
 */
 void eteindreBoutonLumineux(String idBoutonLumineux) {
-  //debug("Fct eteindreBoutonLumineux : ", 0);
-  //debug(idBoutonLumineux, 1);
+  //debug("Fct eteindreBoutonLumineux : " + String(idBoutonLumineux), 1);
 
   if (idBoutonLumineux == "gauche") {
     digitalWrite(BoutonLumineuxGauche, LOW);
@@ -241,8 +238,7 @@ void eteindreLesDeuxBoutonsLumineux() {
 
 */
 void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  //debug("Fct allumerLeVoyantEtBouton : ", 0);
-  //debug(idVoyantEtBoutonLumineux, 1);
+  //debug("Fct allumerLeVoyantEtBouton : " + String(idVoyantEtBoutonLumineux), 1);
 
   if (idVoyantEtBoutonLumineux == "gauche") {
     allumerBoutonLumineux("gauche");
@@ -262,10 +258,9 @@ void allumerLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
 
 */
 void eteindreLeVoyantEtBouton(String idVoyantEtBoutonLumineux) {
-  /*
-  debug("Fct eteindreLeVoyantEtBouton : ", 0);
-  debug(idVoyantEtBoutonLumineux, 1);
-  */
+  
+  //debug("Fct eteindreLeVoyantEtBouton : " + String(idVoyantEtBoutonLumineux), 1);
+  
 
   if (idVoyantEtBoutonLumineux == "gauche") {
     eteindreBoutonLumineux("gauche");
@@ -287,10 +282,7 @@ void decrementerLesAppuisRestants() {
 
   nombreDePointsRestant = nombreDePointsRestant - 1 ;
 
-  /*
-    debug("Nombre d'AppuisRestants = ", 0);
-    debug(String(nombreDePointsRestant), 1);
-  */
+    //debug("Nombre d'AppuisRestants = " + String(nombreDePointsRestant), 1);
 
 }
 
@@ -317,10 +309,9 @@ void choixNouveauBouton() {
   //int btnSuivant = nombreAleatoire(1, nombreBoutons + 1);
   int btnSuivant = sequenceEnCours[nombreDePointsJouesDansLaSequence];
   btnAllume = btnSuivant ;
-  /*
-    debug("Nouveau nombre aleatoire : ", 0);
-    debug(String(btnSuivant), 1);
-  */
+  
+    //debug("Nouveau nombre aleatoire : " + String(btnSuivant), 1);
+    
 
   //Si le chiffre  est 1 => gauche
   if (1 == btnSuivant) {
@@ -347,10 +338,9 @@ void choixNouvelleSequence() {
   //Initialisation de random
 
   int sequenceAleatoire = nombreAleatoire(0, nombreDeSequence - 1);
-  /*
-  debug("Sequence choisie au hasard : n° ", 0);
-  debug(String(sequenceAleatoire), 1);
-  */
+  
+  //debug("Sequence choisie au hasard : n° " + String(sequenceAleatoire), 1);
+  
   debug("Contenu de la sequence choisie au hasard : ", 1);
 
   //sequenceEnCours = sequences[sequenceAleatoire];
@@ -390,8 +380,7 @@ void attendreTemporisation() {
 */
 void testerNombreAppuiRestant() {
   debug("Fct testerNombreAppuiRestant", 1);
-  debug("NombreAppuiRestant : ", 0);
-  debug(String(nombreDePointsRestant), 1);
+  debug("NombreAppuiRestant : " + String(nombreDePointsRestant), 1);
 
 }
 
@@ -482,25 +471,11 @@ void afficherLesTemps() {
 
   calculerTempsMoyenDeplacement();
   
-    /*
-    debug("Début de Sequence à : ", 0);
-    debug(String(tempoDebutDePartie), 1);
-    debug("Fin de Sequence à : ", 0);
-    debug(String(tempoFinDePartie), 1);
-    */
-  
-
-  debug("temps de déplacement total : ", 0);
-  debug(String(dureeTotaleDeplacementPartieEnSecondes), 0);
-  debug(",", 0);
-  debug(String(dureeTotaleDeplacementPartieEnMiliSecondes), 1);
-
-  debug("temps de déplacement moyen : ", 0);
-  debug(String(dureeMoyenneDeplacementPartieEnSecondes), 0);
-  debug(",", 0);
-  debug(String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
-
-
+    //debug("Début de Sequence à : " + String(tempoDebutDePartie), 1);
+    //debug("Fin de Sequence à : " + String(tempoFinDePartie), 1);
+    
+  debug("temps de déplacement total : " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes), 1);
+  debug("temps de déplacement moyen : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
 
 }
 
@@ -599,12 +574,9 @@ void verifierBouton(int btnAVerifier) {
 
   //debug("Fct verifierBouton", 1);
 
-  /*
-    debug("Bouton appuyé = n°", 0);
-    debug(String(btnAVerifier), 1);
-    debug("Bouton allumé = ", 0);
-    debug(String(btnAllume), 1);
-  */
+    //debug("Bouton appuyé = n°" + String(btnAVerifier), 1);
+    //debug("Bouton allumé = " + String(btnAllume), 1);
+
 
   if (btnAVerifier == btnAllume) {
     //debug("Bouton appuyé = OK", 1);
@@ -669,15 +641,13 @@ long nombreAleatoire(int minAleatoire, int maxAleatoire) {
   randomSeed(analogRead(0));
   //nbrAleatoire = random(1, nombreBoutons + 1);
   nbrAleatoire = random(minAleatoire, maxAleatoire);
-  /*
-  debug("Nombre aleatoire = ", 0);
-  debug(String(nbrAleatoire), 1);
-  */
+  
+  //debug("Nombre aleatoire = " + String(nbrAleatoire), 1);
+  
 
   /*
      int aR = analogRead(A0) % 2;
-    debug("Analog Read = ", 0);
-    debug(String(aR), 1);
+    debug("Analog Read = " + String(aR), 1);
   */
 
   // test pour avoir une meilleur répartition avec nombres pairs et impairs
