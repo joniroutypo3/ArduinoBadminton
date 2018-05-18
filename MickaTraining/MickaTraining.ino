@@ -708,3 +708,20 @@ void debug(String messageDebug, int retourLigne) {
   }
 }
 
+
+// GESTION DE L'AFFICHAGE LCD 16x2 - DEBUT
+
+void afficheLCDLigne1(String Message) {
+  lcd.setCursor(0, 0);
+  lcd.print(Message);
+}
+void afficheLCDLigne2(String Message) {
+  lcd.setCursor(0, 1);
+  lcd.print(Message);
+}
+
+void effaccerEcran() {
+  lcd.clear();
+}
+
+// GESTION DE L'AFFICHAGE LCD 16x2 - FIN
