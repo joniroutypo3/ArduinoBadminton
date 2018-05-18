@@ -367,9 +367,6 @@ void choixNouvelleSequence() {
 
   choixNouveauBouton();
 
-
-  //printArray(sequenceEnCours) ;
-
 }
 
 /**
@@ -498,7 +495,11 @@ void afficherLesTemps() {
   debug(",", 0);
   debug(String(dureeMoyenneDeplacementPartieEnMiliSecondes), 1);
 
+  String ligneUne = String(nombreDePointsJouesDansLaSequence) + "pts en " + String(dureeTotaleDeplacementPartieEnSecondes) + "," + String(dureeTotaleDeplacementPartieEnMiliSecondes) + "s" ;
+  String ligneDeux = "Moyenne : " + String(dureeMoyenneDeplacementPartieEnSecondes) + "," + String(dureeMoyenneDeplacementPartieEnMiliSecondes) + "s" ;
 
+  afficheLCDLigne1(ligneUne);
+  afficheLCDLigne2(ligneDeux);
 
 }
 
