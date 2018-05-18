@@ -25,7 +25,7 @@ Timer t; // Définition de l'objet timer
 int debutTimer = 0;
 int tempsDeJeu = 10; //temps de jeu en secondes
 int tempsRestant; //temps de jeu restant en secondes
-int temporisationEntreLesPoints = 200;
+int temporisationEntreLesPoints = 2000;
 unsigned int tempoDebutDePartie = 0;
 unsigned int tempoFinDePartie = 0;
 unsigned int dureeTotalePartie = 0;
@@ -71,9 +71,10 @@ int voyantDroite = 3; // Voyant Droite
 int BoutonLumineuxGauche = 4; // Bouton lumineux Gauche
 int BoutonLumineuxDroite = 5; // Bouton lumineux Droite
 int ledTemoinJeu = 8;  // Voyant de jeu en cours
+int testLedTemoinJeu = 50;  // Voyant de jeu en cours
 
 // Declaration des bornes de btn
-int btn1 = 6; // Bouton de gauche
+int btn1 = 51; // Bouton de gauche
 int btn2 = 7; // Bouton de droite
 int btnReset = 9; // Bouton restart
 
@@ -107,6 +108,7 @@ void loop() {
   if (debutJeu == 0) {
     //Si le bouton start est pressé => le bouton start lance le jeu
     //debug("debutJeu = 0 => Attente du debut de jeu => appuyez sur start", 1);
+    digitalWrite(testLedTemoinJeu,HIGH);
     lectureDuBoutonStart(debutJeu);
   }
   // Si le jeu est en cours
@@ -116,6 +118,7 @@ void loop() {
       //debug("debutJeu = 1 => On lance le jeu ", 1);
       // Lecture des differents boutons
       // Si le bouton start est pressé => relance du jeu
+      digitalWrite(testLedTemoinJeu,LOW);
       lectureDesBoutons();
     }
     else {
